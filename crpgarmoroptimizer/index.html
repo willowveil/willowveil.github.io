@@ -71,11 +71,11 @@ table.output thead {
   color: #C62828;
 }
 
-.rsticky {
+.rpin {
   font-family: 'Microsoft Sans Serif', sans-serif;
 }
 
-.rsticky a {
+.rpin a {
   font-family: 'Microsoft Sans Serif', sans-serif;
 }
 
@@ -86,10 +86,6 @@ table.output thead {
 .srname {
   text-decoration: underline;
   color: #EBA625
-}
-
-.crname {
-  background: khaki;
 }
 
 a {
@@ -129,11 +125,19 @@ background-color: #3e8e41;
   </style>
 </head>
 
-<body style="background-color:#1F2933;">
-</body>
-
-<body text="#E4E7EB" link="#ff0000" vlink="#ff0000" alink="#ff0000">
+<body style="background-color:#1F2933; color:#E4E7EB; text="#E4E7EB; link="#ff0000; vlink="#ff0000; alink="#ff0000">
   <script type="text/JavaScript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <h2 style="text-align: center;">Instructions</h2>
+  <ul style="text-align: center; list-style-position: inside; margin-top: 20px;">
+    <li style="margin-bottom: 5px;">Enter minimum/maximum values for your armor sets in the empty boxes on the right.</li>
+	<li style="margin-bottom: 5px;">Choose which armor pieces to include by selecting them in the "allowed x armor" windows.</li>
+	<li style="margin-bottom: 5px;">Press "Run" to see a list of armor sets using your criteria.</li>
+	<li style="margin-bottom: 5px;">Remove an armor piece from your allowed list by clicking the [x] button to the right of the result</li>
+	<li style="margin-bottom: 5px;">Save an armor set you like by clicking the empty box [ ] to the left of the results.</li>
+	<li style="margin-bottom: 5px;">Press "Reset" to go back to the original settings.</li>
+  </ul>
+
+
   <script type="text/javascript">
 
 
@@ -774,7 +778,7 @@ var armory = {
     var custom = null;
     var usecustom = false;
     var results = [];
-    var sticky = [];
+    var pin = [];
 
     function updateresults() {
       var table = document.getElementById("output");
@@ -782,8 +786,8 @@ var armory = {
       if (usecustom && custom != null) {
         addarmorrow(table, custom, -1, 'BodyArmor');
       }
-      for (var i = 0; i < sticky.length; ++i) {
-        addarmorrow(table, sticky[i], i, 'y');
+      for (var i = 0; i < pin.length; ++i) {
+        addarmorrow(table, pin[i], i, 'y');
       }
       for (var i = 0; i < results.length; ++i) {
         addarmorrow(table, results[i], i, 'n');
@@ -846,19 +850,19 @@ var armory = {
       optimize();
     }
 
-    function makeSticky(index, stick) {
+    function makepin(index, stick) {
       if (stick) {
         if (index == -1) {
-          sticky.push(custom);
+          pin.push(custom);
           custom = null;
         } else {
-          sticky.push(results[index]);
+          pin.push(results[index]);
           removefromarr(results, index);
         }
       } else {
         if (index == -1) custom = null;
         else {
-          removefromarr(sticky, index);
+          removefromarr(pin, index);
         }
       }
       save();
@@ -886,8 +890,8 @@ var armory = {
         val += "c";
         val += comboToString(custom) + "w";
       }
-      for (var i = 0; i < sticky.length; ++i) {
-        val += comboToString(sticky[i]) + "w";
+      for (var i = 0; i < pin.length; ++i) {
+        val += comboToString(pin[i]) + "w";
       }
       document.cookie = "state=" + val + "; expires=" + date.toGMTString() + "; path=/";
     }
@@ -896,7 +900,7 @@ var armory = {
       var val = document.cookie;
       if (!val) return;
       var s0 = val.split(";");
-      sticky = [];
+      pin = [];
       for (var i = 0; i < s0.length; ++i) {
         if (s0[i].match(/^ *state=/)) {
           var sets = s0[i].split("=")[1].split("w");
@@ -904,7 +908,7 @@ var armory = {
             if (sets[j][0] == 'BodyArmor') {
               custom = stringToCombo(sets[j].substring(1))
             } else {
-              sticky.push(stringToCombo(sets[j]));
+              pin.push(stringToCombo(sets[j]));
             }
           }
         }
@@ -925,12 +929,12 @@ var armory = {
       updateresults();
     }
 
-    var classes = ["rsticky", "rname rshou", "rname rches", "rname rgaun", "rname rlegs", "rwei", "rttl", "rbod", "rarm", "rleg", "rcst", "rvalue"];
-    function addarmorrow(table, a, index, sticky) {
-      table.appendChild(makearmorrow(a, index, sticky));
+    var classes = ["rpin", "rname rshou", "rname rches", "rname rgaun", "rname rlegs", "rwei", "rttl", "rbod", "rarm", "rleg", "rcst", "rvalue"];
+    function addarmorrow(table, a, index, pin) {
+      table.appendChild(makearmorrow(a, index, pin));
     }
 
-    function makearmorrow(a, index, sticky) {
+    function makearmorrow(a, index, pin) {
       var r = [0, a.shou, a.ches, a.gaun, a.legs, a.wei, a.ttl, a.bod, a.arm, a.leg, a.cst,];
       for (var k = 5; k < r.length; ++k) if (typeof (r[k]) == "number") r[k] = r[k].toFixed(1);
       var tr = document.createElement("tr");
@@ -938,10 +942,10 @@ var armory = {
         var td = document.createElement("td");
         td.setAttribute("class", classes[i]);
         if (i == 0) {
-          if (sticky == 'n' || sticky == 'BodyArmor') {
-            td.appendChild(_a("javascript:makeSticky(" + index + ",true)", "[ ]", "make sticky"));
-          } else if (sticky == 'y') {
-            td.appendChild(_a("javascript:makeSticky(" + index + ",false)", "[*]", "unsticky"));
+          if (pin == 'n' || pin == 'BodyArmor') {
+            td.appendChild(_a("javascript:makepin(" + index + ",true)", "[ ]", "pin result"));
+          } else if (pin == 'y') {
+            td.appendChild(_a("javascript:makepin(" + index + ",false)", "[*]", "unpin result"));
           }
         } else if (i >= 5) {
           td.setAttribute("alegn", "right");
@@ -957,9 +961,9 @@ var armory = {
           }
           td.appendChild(_a("javascript:disableArmor('" + ar.typ + "', " + ar.index + ")", "x", "disable " + ar.disp));
           td.appendChild(_txt("]"));
-          if (sticky == 'y') {
+          if (pin == 'y') {
             td.setAttribute("class", "s" + classes[i]);
-          } else if (sticky == 'BodyArmor') {
+          } else if (pin == 'BodyArmor') {
             td.setAttribute("class", "c" + classes[i]);
 
             if (ar.index != 0) {
@@ -986,10 +990,10 @@ var armory = {
     <form name="input" action="javascript:optimize()" style="margin: 0 auto; text-align: center;">
       <table style="margin: 0 auto;">
         <tr>
-          <td style="text-align: center;">enabled shoulder armor<br /><select id="shou" name="shou" size=20 multiple /></td>
-          <td style="text-align: center;">enabled chest armor<br /><select id="ches" name="ches" size=20 multiple /></td>
-          <td style="text-align: center;">enabled gauntlets<br /><select id="gaun" name="gaun" size=20 multiple /></td>
-          <td style="text-align: center;">enabled foot armor<br /><select id="legs" name="legs" size=20 multiple /></td>
+          <td style="text-align: center;">allowed shoulder armor<br /><select id="shou" name="shou" size=20 multiple /></td>
+          <td style="text-align: center;">allowed chest armor<br /><select id="ches" name="ches" size=20 multiple /></td>
+          <td style="text-align: center;">allowed hand armor<br /><select id="gaun" name="gaun" size=20 multiple /></td>
+          <td style="text-align: center;">allowed leg armor<br /><select id="legs" name="legs" size=20 multiple /></td>
           <td style="text-align: center;">
             <table>
 			  <div style="text-align: center; margin-top: 1em;">
