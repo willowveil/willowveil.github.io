@@ -6,141 +6,548 @@
   <title>cRPG Armor Optimizer</title>
   <style type="text/css">
     body {
-      font-family: 'Microsoft Sans Serif', sans-serif;
-      text-align: center;
-      color: #FFFFFF;
-    }
+  font-family: 'Microsoft Sans Serif', sans-serif;
+  text-align: center;
+  color: #FFFFFF;
+}
 
     table.output {
-      border-spacing: 5px;
-      font-family: 'Microsoft Sans Serif', sans-serif;
-      font-size: medium;
-      empty-cells: hide;
-      min-width: 1300px;
-      margin: 0 auto;
-    }
+  border-spacing: 5px;
+  font-family: 'Microsoft Sans Serif', sans-serif;
+  font-size: medium;
+  empty-cells: hide;
+  min-width: 1300px;
+  margin: 0 auto;
+}
 
-    table.output tbody tr td {
-      border-bottom: 1px solid #323F4B;
-    }
+table.output tbody tr td {
+  border-bottom: 1px solid #323F4B;
+}
 
-    table.output tbody tr:hover {
-      background: #3E4C59;
-    }
+table.output tbody tr:hover {
+  background: #3E4C59;
+}
 
-    table.output thead {
-      font-weight: bold;
-      background: #323F4B;
-      text-align: center;
-    }
+table.output thead {
+  font-weight: bold;
+  background: #323F4B;
+  text-align: center;
+}
 
-    .maxinfo {
-      color: grey;
-      font-size: small;
-    }
+.maxinfo {
+  color: grey;
+  font-size: small;
+}
 
-    .minim {
-      background: #00A998;
-    }
+.minim {
+  background: #00A998;
+}
 
-    .restriction {
-      background: #C62828;
-    }
+.restriction {
+  background: #C62828;
+}
 
-    .rttl {
-      color: #00A998;
-    }
+.rttl {
+  color: #00A998;
+}
 
-    .rbod {
-      color: #00A998;
-    }
+.rbod {
+  color: #00A998;
+}
 
-    .rarm {
-      color: #00A998;
-    }
+.rarm {
+  color: #00A998;
+}
 
-    .rleg {
-      color: #00A998;
-    }
+.rleg {
+  color: #00A998;
+}
 
-    .rcst {
-      color: #C62828;
-    }
+.rcst {
+  color: #C62828;
+}
 
-    .rwei {
-      color: #C62828;
-    }
+.rwei {
+  color: #C62828;
+}
 
-    .rpin {
-      font-family: 'Microsoft Sans Serif', sans-serif;
-    }
+.rpin {
+  font-family: 'Microsoft Sans Serif', sans-serif;
+}
 
-    .rpin a {
-      font-family: 'Microsoft Sans Serif', sans-serif;
-    }
+.rpin a {
+  font-family: 'Microsoft Sans Serif', sans-serif;
+}
 
-    .srname {
-      font-weight: bold;
-    }
+.srname {
+  font-weight: bold;
+}
 
-    .srname {
-      text-decoration: underline;
-      color: #EBA625
-    }
+.srname {
+  text-decoration: underline;
+  color: #EBA625
+}
 
-    a {
-      text-decoration: none;
-    }
+a {
+  text-decoration: none;
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+a:hover {
+  text-decoration: underline;
+}
 
-    form {
-      display: flex;
-      justify-content: space-between;
-    }
+form {
+display: flex;
+justify-content: space-between;
+}
 
-    input[type="submit"],
-    input[type="reset"] {
-      width: 40%;
-      background-color: #4CAF50;
-      color: white;
-      padding: 0.5em 1em;
-      border: none;
-      border-radius: 5px;
-      margin-top: .2em;
-      margin-right: .5em;
-      cursor: pointer;
-      font-size: large;
-    }
+input[type="submit"],
+input[type="reset"] {
+width: 40%;
+background-color: #4CAF50;
+color: white;
+padding: 0.5em 1em;
+border: none;
+border-radius: 5px;
+margin-top: .2em;
+margin-right: .5em;
+cursor: pointer;
+font-size: large;
+}
 
-    input[type="submit"]:hover,
-    input[type="reset"]:hover {
-      background-color: #3e8e41;
-    }
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+background-color: #3e8e41;
+}
+
+
+
   </style>
 </head>
 
-<body style="background-color:#1F2933; color:#E4E7EB; text=" #E4E7EB; link="#ff0000; vlink=" #ff0000; alink="#ff0000">
+<body style="background-color:#1F2933; color:#E4E7EB; text="#E4E7EB; link="#ff0000; vlink="#ff0000; alink="#ff0000">
   <script type="text/JavaScript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
   <h2 style="text-align: center;"><u>Updated for v49</u></h2>
   <h2 style="text-align: center;">Instructions</h2>
   <ul style="text-align: center; list-style-position: inside; margin-top: 20px;">
-    <li style="margin-bottom: 5px;">Either keep all armor pieces allowed or choose which to include by selecting them in
-      the "allowed x armor" windows.</li>
-    <li style="margin-bottom: 5px;">Enter minimum and maximum values for your armor sets in the teal and red boxes on
-      the right.</li>
-    <li style="margin-bottom: 5px;">Press "run" to see a list of armor sets using your criteria.</li>
-    <li style="margin-bottom: 5px;">Click the [x] button to the right of the result to remove an armor piece from your
-      allowed list.</li>
-    <li style="margin-bottom: 5px;">Click the [ ] button to the left of the results to save an armor set you like.</li>
-    <li style="margin-bottom: 5px;">Press "reset" to go back to the original settings.</li>
+  	<li style="margin-bottom: 5px;">Either keep all armor pieces allowed or choose which to include by selecting them in the "allowed x armor" windows.</li>
+    <li style="margin-bottom: 5px;">Enter minimum and maximum values for your armor sets in the teal and red boxes on the right.</li>
+	<li style="margin-bottom: 5px;">Press "run" to see a list of armor sets using your criteria.</li>
+	<li style="margin-bottom: 5px;">Click the [x] button to the right of the result to remove an armor piece from your allowed list.</li>
+	<li style="margin-bottom: 5px;">Click the [ ] button to the left of the results to save an armor set you like.</li>
+	<li style="margin-bottom: 5px;">Press "reset" to go back to the original settings.</li>
   </ul>
   <p style="margin-bottom: 40px;"></p>
 
 
   <script type="text/javascript">
+
+
+var armory = {
+  shou:[
+    {id:1, index:0, name:"<none>", disp:"<none>", typ:"ShoulderArmor", upg:0, wei:0.0, ttl:0.0, bod:0.0, arm:0.0, leg:0.0, cst:0.0, culture:"Neutral" },
+	{"id":"5","index":1,"name":"Fringed Cape","disp":"Fringed Cape","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Battania"},
+	{"id":"6","index":2,"name":"Woven Shoulder Pad","disp":"Woven Shoulder Pad","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Aserai"},
+	{"id":"7","index":3,"name":"Cotton Hood","disp":"Cotton Hood","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Neutral"},
+	{"id":"8","index":4,"name":"Shawl","disp":"Shawl","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Neutral"},
+	{"id":"9","index":5,"name":"Simple Cape","disp":"Simple Cape","typ":"ShoulderArmor","upg":0,"wei":0.1476441,"ttl":2,"bod":1,"arm":1,"leg":0,"cst":51,"culture":"Battania"},
+	{"id":"10","index":6,"name":"Short Cloak","disp":"Short Cloak","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Aserai"},
+	{"id":"11","index":7,"name":"Tartan Cloak","disp":"Tartan Cloak","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Battania"},
+	{"id":"12","index":8,"name":"Scarf","disp":"Scarf","typ":"ShoulderArmor","upg":0,"wei":0.1231144,"ttl":2,"bod":2,"arm":0,"leg":0,"cst":51,"culture":"Neutral"},
+	{"id":"13","index":9,"name":"Green Hood","disp":"Green Hood","typ":"ShoulderArmor","upg":0,"wei":0.2085584,"ttl":3,"bod":3,"arm":0,"leg":0,"cst":55,"culture":"Vlandia"},
+	{"id":"14","index":10,"name":"Hood","disp":"Hood","typ":"ShoulderArmor","upg":0,"wei":0.2085584,"ttl":3,"bod":3,"arm":0,"leg":0,"cst":55,"culture":"Vlandia"},
+	{"id":"15","index":11,"name":"Leopard Pelt","disp":"Leopard Pelt","typ":"ShoulderArmor","upg":0,"wei":0.3031433,"ttl":4,"bod":4,"arm":0,"leg":0,"cst":63,"culture":"Aserai"},
+	{"id":"16","index":12,"name":"Tartan Cape","disp":"Tartan Cape","typ":"ShoulderArmor","upg":0,"wei":0.3031433,"ttl":4,"bod":4,"arm":0,"leg":0,"cst":63,"culture":"Battania"},
+	{"id":"17","index":13,"name":"Shoulder Harness","disp":"Shoulder Harness","typ":"ShoulderArmor","upg":0,"wei":0.3031433,"ttl":4,"bod":4,"arm":0,"leg":0,"cst":63,"culture":"Battania"},
+	{"id":"18","index":14,"name":"Woodland Cape","disp":"Woodland Cape","typ":"ShoulderArmor","upg":0,"wei":0.3031433,"ttl":4,"bod":4,"arm":0,"leg":0,"cst":63,"culture":"Battania"},
+	{"id":"19","index":15,"name":"Heavy Tartan Scarf","disp":"Heavy Tartan Scarf","typ":"ShoulderArmor","upg":0,"wei":0.3330266,"ttl":4,"bod":3,"arm":1,"leg":0,"cst":64,"culture":"Battania"},
+	{"id":"20","index":16,"name":"Cured Leather Shoulder Pieces","disp":"Cured Leather Shoulder Pieces","typ":"ShoulderArmor","upg":0,"wei":0.4051641,"ttl":5,"bod":5,"arm":0,"leg":0,"cst":77,"culture":"Battania"},
+	{"id":"21","index":17,"name":"Leather Shoulder Guard","disp":"Leather Shoulder Guard","typ":"ShoulderArmor","upg":0,"wei":0.4051641,"ttl":5,"bod":5,"arm":0,"leg":0,"cst":77,"culture":"Aserai"},
+	{"id":"22","index":18,"name":"Heavy Cloak","disp":"Heavy Cloak","typ":"ShoulderArmor","upg":0,"wei":0.4694771,"ttl":5,"bod":3,"arm":2,"leg":0,"cst":79,"culture":"Neutral"},
+	{"id":"23","index":19,"name":"Bronze Lamellar Shoulder Guards","disp":"Bronze Lamellar Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":0.5698458,"ttl":5,"bod":0,"arm":5,"leg":0,"cst":81,"culture":"Khuzait"},
+	{"id":"24","index":20,"name":"Mail Shoulder Pieces","disp":"Mail Shoulder Pieces","typ":"ShoulderArmor","upg":0,"wei":0.5135309,"ttl":6,"bod":6,"arm":0,"leg":0,"cst":100,"culture":"Battania"},
+	{"id":"25","index":21,"name":"Woodland Fur Cloak","disp":"Woodland Fur Cloak","typ":"ShoulderArmor","upg":0,"wei":0.5135309,"ttl":6,"bod":6,"arm":0,"leg":0,"cst":100,"culture":"Battania"},
+	{"id":"26","index":22,"name":"Cured Leather Pauldrons","disp":"Cured Leather Pauldrons","typ":"ShoulderArmor","upg":0,"wei":0.5135309,"ttl":6,"bod":6,"arm":0,"leg":0,"cst":100,"culture":"Khuzait"},
+	{"id":"27","index":23,"name":"Reinforced Suede Shoulder Guards","disp":"Reinforced Suede Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":0.5135309,"ttl":6,"bod":6,"arm":0,"leg":0,"cst":100,"culture":"Khuzait"},
+	{"id":"28","index":24,"name":"Bronze Pauldrons","disp":"Bronze Pauldrons","typ":"ShoulderArmor","upg":0,"wei":0.7222589,"ttl":6,"bod":0,"arm":6,"leg":0,"cst":105,"culture":"Empire"},
+	{"id":"29","index":25,"name":"Lamellar Shoulder Guards","disp":"Lamellar Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":0.7222589,"ttl":6,"bod":0,"arm":6,"leg":0,"cst":105,"culture":"Sturgia"},
+	{"id":"30","index":26,"name":"Mail Shoulder Reinforcements","disp":"Mail Shoulder Reinforcements","typ":"ShoulderArmor","upg":0,"wei":0.6274765,"ttl":7,"bod":7,"arm":0,"leg":0,"cst":132,"culture":"Battania"},
+	{"id":"31","index":27,"name":"Stitched Leather Shoulders","disp":"Stitched Leather Shoulders","typ":"ShoulderArmor","upg":0,"wei":0.6274765,"ttl":7,"bod":7,"arm":0,"leg":0,"cst":132,"culture":"Sturgia"},
+	{"id":"32","index":28,"name":"Tartan Shoulder Harness","disp":"Tartan Shoulder Harness","typ":"ShoulderArmor","upg":0,"wei":0.6274765,"ttl":7,"bod":7,"arm":0,"leg":0,"cst":132,"culture":"Battania"},
+	{"id":"33","index":29,"name":"Bronze Plate Pauldrons","disp":"Bronze Plate Pauldrons","typ":"ShoulderArmor","upg":0,"wei":0.8825183,"ttl":7,"bod":0,"arm":7,"leg":0,"cst":141,"culture":"Empire"},
+	{"id":"34","index":30,"name":"Bolted Leather Strips","disp":"Bolted Leather Strips","typ":"ShoulderArmor","upg":0,"wei":0.7464263,"ttl":8,"bod":8,"arm":0,"leg":0,"cst":176,"culture":"Khuzait"},
+	{"id":"35","index":31,"name":"Wolf Pelt Cape","disp":"Wolf Pelt Cape","typ":"ShoulderArmor","upg":0,"wei":0.8200078,"ttl":8,"bod":6,"arm":2,"leg":0,"cst":180,"culture":"Battania"},
+	{"id":"36","index":32,"name":"Plate Pauldrons","disp":"Plate Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.049816,"ttl":8,"bod":0,"arm":8,"leg":0,"cst":189,"culture":"Empire"},
+	{"id":"37","index":33,"name":"Iron Plate Pauldrons","disp":"Iron Plate Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.049816,"ttl":8,"bod":0,"arm":8,"leg":0,"cst":189,"culture":"Empire"},
+	{"id":"38","index":34,"name":"Decorated Lamellar Leather Shoulder Guards","disp":"Decorated Lamellar Leather Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":1.049816,"ttl":8,"bod":0,"arm":8,"leg":0,"cst":189,"culture":"Khuzait"},
+	{"id":"39","index":35,"name":"Reinforced Harness with Cape","disp":"Reinforced Harness with Cape","typ":"ShoulderArmor","upg":0,"wei":0.8699318,"ttl":9,"bod":9,"arm":0,"leg":0,"cst":235,"culture":"Battania"},
+	{"id":"40","index":36,"name":"Light Chain Shoulders","disp":"Light Chain Shoulders","typ":"ShoulderArmor","upg":0,"wei":0.8699318,"ttl":9,"bod":9,"arm":0,"leg":0,"cst":235,"culture":"Vlandia"},
+	{"id":"41","index":37,"name":"Brass Scale Pauldrons","disp":"Brass Scale Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.142588,"ttl":9,"bod":2,"arm":7,"leg":0,"cst":248,"culture":"Aserai"},
+	{"id":"42","index":38,"name":"Woven Leather Shoulders","disp":"Woven Leather Shoulders","typ":"ShoulderArmor","upg":0,"wei":1.155988,"ttl":10,"bod":6,"arm":4,"leg":0,"cst":319,"culture":"Empire"},
+	{"id":"43","index":39,"name":"Scale Pauldrons","disp":"Scale Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.319527,"ttl":10,"bod":2,"arm":8,"leg":0,"cst":327,"culture":"Aserai"},
+	{"id":"44","index":40,"name":"Decorated Steel Lamellar Shoulder Pieces","disp":"Decorated Steel Lamellar Shoulder Pieces","typ":"ShoulderArmor","upg":0,"wei":1.403125,"ttl":10,"bod":0,"arm":10,"leg":0,"cst":331,"culture":"Khuzait"},
+	{"id":"45","index":41,"name":"Mail Shoulder Guards","disp":"Mail Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":1.129225,"ttl":11,"bod":11,"arm":0,"leg":0,"cst":404,"culture":"Sturgia"},
+	{"id":"46","index":42,"name":"Ringmail Shoulder Guard","disp":"Ringmail Shoulder Guard","typ":"ShoulderArmor","upg":0,"wei":1.129225,"ttl":11,"bod":11,"arm":0,"leg":0,"cst":404,"culture":"Aserai"},
+	{"id":"47","index":43,"name":"Reinforced Leather Pauldrons","disp":"Reinforced Leather Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.25078,"ttl":11,"bod":8,"arm":3,"leg":0,"cst":411,"culture":"Khuzait"},
+	{"id":"48","index":44,"name":"Chained Fur Cloak","disp":"Chained Fur Cloak","typ":"ShoulderArmor","upg":0,"wei":1.25078,"ttl":11,"bod":8,"arm":3,"leg":0,"cst":411,"culture":"Battania"},
+	{"id":"49","index":45,"name":"Legionary Studded Harness","disp":"Legionary Studded Harness","typ":"ShoulderArmor","upg":0,"wei":1.291926,"ttl":11,"bod":7,"arm":4,"leg":0,"cst":413,"culture":"Empire"},
+	{"id":"50","index":46,"name":"Decorated Leather Harness","disp":"Decorated Leather Harness","typ":"ShoulderArmor","upg":0,"wei":1.417172,"ttl":11,"bod":4,"arm":7,"leg":0,"cst":420,"culture":"Empire"},
+	{"id":"51","index":47,"name":"Western chain shoulders","disp":"Western chain shoulders","typ":"ShoulderArmor","upg":0,"wei":1.264461,"ttl":12,"bod":12,"arm":0,"leg":0,"cst":518,"culture":"Vlandia"},
+	{"id":"52","index":48,"name":"Padded Leather Shoulders","disp":"Padded Leather Shoulders","typ":"ShoulderArmor","upg":0,"wei":1.431252,"ttl":12,"bod":8,"arm":4,"leg":0,"cst":528,"culture":"Vlandia"},
+	{"id":"53","index":49,"name":"Caped Leather Harness","disp":"Caped Leather Harness","typ":"ShoulderArmor","upg":0,"wei":1.55939,"ttl":12,"bod":5,"arm":7,"leg":0,"cst":535,"culture":"Empire"},
+	{"id":"54","index":50,"name":"Legionary Padded Straps","disp":"Legionary Padded Straps","typ":"ShoulderArmor","upg":0,"wei":1.573783,"ttl":13,"bod":9,"arm":4,"leg":0,"cst":665,"culture":"Empire"},
+	{"id":"55","index":51,"name":"Legionary Reinforced Studded Harness","disp":"Legionary Reinforced Studded Harness","typ":"ShoulderArmor","upg":0,"wei":1.660773,"ttl":13,"bod":7,"arm":6,"leg":0,"cst":670,"culture":"Empire"},
+	{"id":"56","index":52,"name":"Bear Pelt","disp":"Bear Pelt","typ":"ShoulderArmor","upg":0,"wei":1.545028,"ttl":14,"bod":14,"arm":0,"leg":0,"cst":815,"culture":"Battania"},
+	{"id":"57","index":53,"name":"Decorated Bronze Scale Pauldrons","disp":"Decorated Bronze Scale Pauldrons","typ":"ShoulderArmor","upg":0,"wei":1.897872,"ttl":14,"bod":6,"arm":8,"leg":0,"cst":836,"culture":"Aserai"},
+	{"id":"58","index":54,"name":"Leather Lamellar Shoulder Guards","disp":"Leather Lamellar Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":1.822998,"ttl":15,"bod":12,"arm":3,"leg":0,"cst":1010,"culture":"Khuzait"},
+	{"id":"59","index":55,"name":"Cured Studded Leather Shoulders","disp":"Cured Studded Leather Shoulders","typ":"ShoulderArmor","upg":0,"wei":1.91293,"ttl":15,"bod":10,"arm":5,"leg":0,"cst":1015,"culture":"Khuzait"},
+	{"id":"60","index":56,"name":"Armored Bearskin","disp":"Armored Bearskin","typ":"ShoulderArmor","upg":0,"wei":1.837917,"ttl":16,"bod":16,"arm":0,"leg":0,"cst":1217,"culture":"Battania"},
+	{"id":"61","index":57,"name":"Ornate Pauldrons","disp":"Ornate Pauldrons","typ":"ShoulderArmor","upg":0,"wei":2.204109,"ttl":16,"bod":8,"arm":8,"leg":0,"cst":1235,"culture":"Vlandia"},
+	{"id":"62","index":58,"name":"Pauldrons with Cape","disp":"Pauldrons with Cape","typ":"ShoulderArmor","upg":0,"wei":2.204109,"ttl":16,"bod":8,"arm":8,"leg":0,"cst":1235,"culture":"Vlandia"},
+	{"id":"63","index":59,"name":"Decorated Long Sleeve Bronze Scale Pauldrons","disp":"Decorated Long Sleeve Bronze Scale Pauldrons","typ":"ShoulderArmor","upg":0,"wei":2.297998,"ttl":16,"bod":6,"arm":10,"leg":0,"cst":1239,"culture":"Aserai"},
+	{"id":"64","index":60,"name":"Reinforced Studded Neckguard","disp":"Reinforced Studded Neckguard","typ":"ShoulderArmor","upg":0,"wei":1.988628,"ttl":17,"bod":17,"arm":0,"leg":0,"cst":1461,"culture":"Khuzait"},
+	{"id":"65","index":61,"name":"Decorated Leather Harness with Padding","disp":"Decorated Leather Harness with Padding","typ":"ShoulderArmor","upg":0,"wei":2.520514,"ttl":18,"bod":10,"arm":8,"leg":0,"cst":1747,"culture":"Empire"},
+	{"id":"66","index":62,"name":"Bronze Scale Pauldrons","disp":"Bronze Scale Pauldrons","typ":"ShoulderArmor","upg":0,"wei":2.617309,"ttl":18,"bod":8,"arm":10,"leg":0,"cst":1749,"culture":"Aserai"},
+	{"id":"67","index":63,"name":"Reinforced Mail Shoulders","disp":"Reinforced Mail Shoulders","typ":"ShoulderArmor","upg":0,"wei":2.488437,"ttl":19,"bod":15,"arm":4,"leg":0,"cst":2047,"culture":"Vlandia"},
+	{"id":"68","index":64,"name":"Bronze Pauldrons with Neck Guard","disp":"Bronze Pauldrons with Neck Guard","typ":"ShoulderArmor","upg":0,"wei":2.58495,"ttl":19,"bod":13,"arm":6,"leg":0,"cst":2048,"culture":"Empire"},
+	{"id":"69","index":65,"name":"Bronze Scale Shoulder Guards","disp":"Bronze Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":2.64976,"ttl":20,"bod":16,"arm":4,"leg":0,"cst":2385,"culture":"Aserai"},
+	{"id":"70","index":66,"name":"Legionary Cape","disp":"Legionary Cape","typ":"ShoulderArmor","upg":0,"wei":2.64976,"ttl":20,"bod":16,"arm":4,"leg":0,"cst":2385,"culture":"Empire"},
+	{"id":"71","index":67,"name":"Rough Bearskin","disp":"Rough Bearskin","typ":"ShoulderArmor","upg":0,"wei":2.64976,"ttl":20,"bod":16,"arm":4,"leg":0,"cst":2385,"culture":"Battania"},
+	{"id":"72","index":68,"name":"Scale Shoulder Guards","disp":"Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":2.962548,"ttl":21,"bod":14,"arm":7,"leg":0,"cst":2752,"culture":"Aserai"},
+	{"id":"73","index":69,"name":"Neckguard with Bronze Plate Pauldrons","disp":"Neckguard with Bronze Plate Pauldrons","typ":"ShoulderArmor","upg":0,"wei":2.962548,"ttl":21,"bod":14,"arm":7,"leg":0,"cst":2752,"culture":"Empire"},
+	{"id":"74","index":70,"name":"Reinforced Studded Shoulder Guards","disp":"Reinforced Studded Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":2.813383,"ttl":21,"bod":17,"arm":4,"leg":0,"cst":2756,"culture":"Khuzait"},
+	{"id":"75","index":71,"name":"Bronze Lamellar Shoulder Pieces","disp":"Bronze Lamellar Shoulder Pieces","typ":"ShoulderArmor","upg":0,"wei":3.079782,"ttl":22,"bod":16,"arm":6,"leg":0,"cst":3158,"culture":"Khuzait"},
+	{"id":"76","index":72,"name":"Lamellar Pauldrons","disp":"Lamellar Pauldrons","typ":"ShoulderArmor","upg":0,"wei":3.079782,"ttl":22,"bod":16,"arm":6,"leg":0,"cst":3158,"culture":"Sturgia"},
+	{"id":"77","index":73,"name":"Decorated Scale Shoulder Guards","disp":"Decorated Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":2.979232,"ttl":22,"bod":18,"arm":4,"leg":0,"cst":3163,"culture":"Sturgia"},
+	{"id":"78","index":74,"name":"Lamellar Shoulder Pieces","disp":"Lamellar Shoulder Pieces","typ":"ShoulderArmor","upg":0,"wei":2.979232,"ttl":22,"bod":18,"arm":4,"leg":0,"cst":3163,"culture":"Khuzait"},
+	{"id":"79","index":75,"name":"Thin Sleeved Bronze Scale Shoulder Guards","disp":"Thin Sleeved Bronze Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":3.524155,"ttl":24,"bod":16,"arm":8,"leg":0,"cst":4064,"culture":"Aserai"},
+	{"id":"80","index":76,"name":"Scale Shoulderguards","disp":"Scale Shoulderguards","typ":"ShoulderArmor","upg":0,"wei":3.524155,"ttl":24,"bod":16,"arm":8,"leg":0,"cst":4064,"culture":"Vlandia"},
+	{"id":"81","index":77,"name":"Decorated Leather Harness over Mail","disp":"Decorated Leather Harness over Mail","typ":"ShoulderArmor","upg":0,"wei":3.981872,"ttl":26,"bod":16,"arm":10,"leg":0,"cst":5104,"culture":"Empire"},
+	{"id":"82","index":78,"name":"Heavy Lamellar Pauldrons","disp":"Heavy Lamellar Pauldrons","typ":"ShoulderArmor","upg":0,"wei":3.928406,"ttl":26,"bod":17,"arm":9,"leg":0,"cst":5113,"culture":"Empire"},
+	{"id":"83","index":79,"name":"Ornate Pauldrons with Cape","disp":"Ornate Pauldrons with Cape","typ":"ShoulderArmor","upg":0,"wei":4.269802,"ttl":27,"bod":15,"arm":12,"leg":0,"cst":5662,"culture":"Vlandia"},
+	{"id":"84","index":80,"name":"Ornate Pauldrons over mail","disp":"Ornate Pauldrons over mail","typ":"ShoulderArmor","upg":0,"wei":4.107271,"ttl":27,"bod":18,"arm":9,"leg":0,"cst":5698,"culture":"Vlandia"},
+	{"id":"85","index":81,"name":"Heavy Warlord Pauldrons","disp":"Heavy Warlord Pauldrons","typ":"ShoulderArmor","upg":0,"wei":4.710186,"ttl":30,"bod":20,"arm":10,"leg":0,"cst":7665,"culture":"Battania"},
+	{"id":"86","index":82,"name":"Decorated Leather Harness over Scale","disp":"Decorated Leather Harness over Scale","typ":"ShoulderArmor","upg":0,"wei":5.009205,"ttl":31,"bod":19,"arm":12,"leg":0,"cst":8358,"culture":"Empire"},
+	{"id":"87","index":83,"name":"Reinforced Ornate Pauldrons over Scale","disp":"Reinforced Ornate Pauldrons over Scale","typ":"ShoulderArmor","upg":0,"wei":5.581027,"ttl":34,"bod":22,"arm":12,"leg":0,"cst":10794,"culture":"Vlandia"},
+	{"id":"88","index":84,"name":"Long Sleeved Bronze Scale Shoulder Guards","disp":"Long Sleeved Bronze Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":5.40799,"ttl":34,"bod":25,"arm":9,"leg":0,"cst":10892,"culture":"Aserai"},
+	{"id":"89","index":85,"name":"Long Sleeved Steel Scale Shoulder Guards","disp":"Long Sleeved Steel Scale Shoulder Guards","typ":"ShoulderArmor","upg":0,"wei":5.40799,"ttl":34,"bod":25,"arm":9,"leg":0,"cst":10892,"culture":"Aserai"},
+	{"id":"90","index":86,"name":"Western Shoulder Plates","disp":"Western Shoulder Plates","typ":"ShoulderArmor","upg":0,"wei":5.40799,"ttl":34,"bod":25,"arm":9,"leg":0,"cst":10892,"culture":"Vlandia"}
+	],
+  ches:[
+    {id:2, index:0, name:"<none>", disp:"<none>", typ:"BodyArmor", upg:0, wei:0.0, ttl:0.0, bod:0.0, arm:0.0, leg:0.0, cst:0.0, culture:"Neutral" },
+	{"id":"91","index":1,"name":"Tattered Rags","disp":"Tattered Rags","typ":"BodyArmor","upg":0,"wei":0.2176407,"ttl":3,"bod":2,"arm":0,"leg":1,"cst":51,"culture":"Looters"},
+	{"id":"92","index":2,"name":"Torn Robe","disp":"Torn Robe","typ":"BodyArmor","upg":0,"wei":0.2176407,"ttl":3,"bod":2,"arm":0,"leg":1,"cst":51,"culture":"Looters"},
+	{"id":"93","index":3,"name":"Ragged Robes","disp":"Ragged Robes","typ":"BodyArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":2,"arm":1,"leg":1,"cst":54,"culture":"Looters"},
+	{"id":"94","index":4,"name":"Commoner Clothes","disp":"Commoner Clothes","typ":"BodyArmor","upg":0,"wei":0.3330266,"ttl":4,"bod":3,"arm":1,"leg":0,"cst":55,"culture":"Empire"},
+	{"id":"95","index":5,"name":"Thawb","disp":"Thawb","typ":"BodyArmor","upg":0,"wei":0.3330266,"ttl":4,"bod":3,"arm":1,"leg":0,"cst":55,"culture":"Aserai"},
+	{"id":"96","index":6,"name":"Sackcloth Tunic","disp":"Sackcloth Tunic","typ":"BodyArmor","upg":0,"wei":0.3330266,"ttl":4,"bod":3,"arm":1,"leg":0,"cst":55,"culture":"Vlandia"},
+	{"id":"97","index":7,"name":"Commoner Tunic","disp":"Commoner Tunic","typ":"BodyArmor","upg":0,"wei":0.3330266,"ttl":4,"bod":3,"arm":1,"leg":0,"cst":55,"culture":"Looters"},
+	{"id":"98","index":8,"name":"Sleeveless Enveloped Padded Garments","disp":"Sleeveless Enveloped Padded Garments","typ":"BodyArmor","upg":0,"wei":0.4477977,"ttl":5,"bod":3,"arm":1,"leg":1,"cst":59,"culture":"Looters"},
+	{"id":"99","index":9,"name":"Striped Coat","disp":"Striped Coat","typ":"BodyArmor","upg":0,"wei":0.4477977,"ttl":5,"bod":3,"arm":1,"leg":1,"cst":59,"culture":"Khuzait"},
+	{"id":"100","index":10,"name":"Commoner Shirt","disp":"Commoner Shirt","typ":"BodyArmor","upg":0,"wei":0.4477977,"ttl":5,"bod":3,"arm":1,"leg":1,"cst":59,"culture":"Looters"},
+	{"id":"101","index":11,"name":"Simple Kaftan","disp":"Simple Kaftan","typ":"BodyArmor","upg":0,"wei":0.4477977,"ttl":5,"bod":3,"arm":1,"leg":1,"cst":59,"culture":"Aserai"},
+	{"id":"102","index":12,"name":"Long Simple Robe","disp":"Long Simple Robe","typ":"BodyArmor","upg":0,"wei":0.5698458,"ttl":6,"bod":3,"arm":1,"leg":2,"cst":63,"culture":"Aserai"},
+	{"id":"103","index":13,"name":"Steppe Robe","disp":"Steppe Robe","typ":"BodyArmor","upg":0,"wei":0.5698458,"ttl":6,"bod":3,"arm":1,"leg":2,"cst":63,"culture":"Khuzait"},
+	{"id":"104","index":14,"name":"Baggy Trunks","disp":"Baggy Trunks","typ":"BodyArmor","upg":0,"wei":0.5698458,"ttl":6,"bod":3,"arm":1,"leg":2,"cst":63,"culture":"Battania"},
+	{"id":"105","index":15,"name":"Cheap Colored Clothes","disp":"Cheap Colored Clothes","typ":"BodyArmor","upg":0,"wei":0.5584753,"ttl":6,"bod":4,"arm":1,"leg":1,"cst":66,"culture":"Looters"},
+	{"id":"106","index":16,"name":"Tied Cloth Tunic","disp":"Tied Cloth Tunic","typ":"BodyArmor","upg":0,"wei":0.5927441,"ttl":6,"bod":3,"arm":2,"leg":1,"cst":67,"culture":"Empire"},
+	{"id":"107","index":17,"name":"Simple Cloth Tunic","disp":"Simple Cloth Tunic","typ":"BodyArmor","upg":0,"wei":0.5927441,"ttl":6,"bod":3,"arm":2,"leg":1,"cst":67,"culture":"Vlandia"},
+	{"id":"108","index":18,"name":"Belted Tunic","disp":"Belted Tunic","typ":"BodyArmor","upg":0,"wei":0.5927441,"ttl":6,"bod":3,"arm":2,"leg":1,"cst":67,"culture":"Sturgia"},
+	{"id":"109","index":19,"name":"Burlap Waistcoat","disp":"Burlap Waistcoat","typ":"BodyArmor","upg":0,"wei":0.5927441,"ttl":6,"bod":3,"arm":2,"leg":1,"cst":67,"culture":"Battania"},
+	{"id":"110","index":20,"name":"Luxury Tunic","disp":"Luxury Tunic","typ":"BodyArmor","upg":0,"wei":0.7102445,"ttl":7,"bod":4,"arm":2,"leg":1,"cst":77,"culture":"Sturgia"},
+	{"id":"111","index":21,"name":"Simple Peasant Robe","disp":"Simple Peasant Robe","typ":"BodyArmor","upg":0,"wei":0.6744834,"ttl":7,"bod":5,"arm":1,"leg":1,"cst":77,"culture":"Aserai"},
+	{"id":"112","index":22,"name":"Woodland Commoner Dress","disp":"Woodland Commoner Dress","typ":"BodyArmor","upg":0,"wei":0.6744834,"ttl":7,"bod":5,"arm":1,"leg":1,"cst":77,"culture":"Battania"},
+	{"id":"113","index":23,"name":"Corseted Dress","disp":"Corseted Dress","typ":"BodyArmor","upg":0,"wei":0.6744834,"ttl":7,"bod":5,"arm":1,"leg":1,"cst":77,"culture":"Vlandia"},
+	{"id":"114","index":24,"name":"Hemp Tunic","disp":"Hemp Tunic","typ":"BodyArmor","upg":0,"wei":0.6744834,"ttl":7,"bod":5,"arm":1,"leg":1,"cst":77,"culture":"Empire"},
+	{"id":"115","index":25,"name":"Dress","disp":"Dress","typ":"BodyArmor","upg":0,"wei":0.6744834,"ttl":7,"bod":5,"arm":1,"leg":1,"cst":77,"culture":"Sturgia"},
+	{"id":"116","index":26,"name":"Fur Trimmed Short Tunic","disp":"Fur Trimmed Short Tunic","typ":"BodyArmor","upg":0,"wei":0.8324248,"ttl":8,"bod":5,"arm":2,"leg":1,"cst":92,"culture":"Sturgia"},
+	{"id":"117","index":27,"name":"Silk Kaftan","disp":"Silk Kaftan","typ":"BodyArmor","upg":0,"wei":0.7953038,"ttl":8,"bod":6,"arm":1,"leg":1,"cst":92,"culture":"Aserai"},
+	{"id":"118","index":28,"name":"Plain Dress","disp":"Plain Dress","typ":"BodyArmor","upg":0,"wei":0.9460685,"ttl":9,"bod":5,"arm":1,"leg":3,"cst":97,"culture":"Sturgia"},
+	{"id":"119","index":29,"name":"Woodland Garments","disp":"Woodland Garments","typ":"BodyArmor","upg":0,"wei":0.8200078,"ttl":8,"bod":6,"arm":2,"leg":0,"cst":98,"culture":"Battania"},
+	{"id":"120","index":30,"name":"Burlap Dress","disp":"Burlap Dress","typ":"BodyArmor","upg":0,"wei":0.9205263,"ttl":9,"bod":7,"arm":1,"leg":1,"cst":111,"culture":"Looters"},
+	{"id":"121","index":31,"name":"Rich Tunic","disp":"Rich Tunic","typ":"BodyArmor","upg":0,"wei":0.9588999,"ttl":9,"bod":6,"arm":2,"leg":1,"cst":112,"culture":"Empire"},
+	{"id":"122","index":32,"name":"Fur Skirt","disp":"Fur Skirt","typ":"BodyArmor","upg":0,"wei":0.9846813,"ttl":9,"bod":6,"arm":3,"leg":0,"cst":120,"culture":"Looters"},
+	{"id":"123","index":33,"name":"Long Woolen Tunic","disp":"Long Woolen Tunic","typ":"BodyArmor","upg":0,"wei":1.102607,"ttl":10,"bod":6,"arm":2,"leg":2,"cst":127,"culture":"Vlandia"},
+	{"id":"124","index":34,"name":"Half Apron","disp":"Half Apron","typ":"BodyArmor","upg":0,"wei":1.223521,"ttl":11,"bod":6,"arm":1,"leg":4,"cst":134,"culture":"Neutral"},
+	{"id":"125","index":35,"name":"Studded Leather Waistcoat","disp":"Studded Leather Waistcoat","typ":"BodyArmor","upg":0,"wei":1.089354,"ttl":10,"bod":7,"arm":2,"leg":1,"cst":136,"culture":"Khuzait"},
+	{"id":"126","index":36,"name":"Laced Dress","disp":"Laced Dress","typ":"BodyArmor","upg":0,"wei":1.237134,"ttl":11,"bod":7,"arm":2,"leg":2,"cst":155,"culture":"Sturgia"},
+	{"id":"127","index":37,"name":"Tassled Robes","disp":"Tassled Robes","typ":"BodyArmor","upg":0,"wei":1.361178,"ttl":12,"bod":7,"arm":1,"leg":4,"cst":163,"culture":"Aserai"},
+	{"id":"128","index":38,"name":"Armored Baggy Trunks","disp":"Armored Baggy Trunks","typ":"BodyArmor","upg":0,"wei":1.403125,"ttl":12,"bod":6,"arm":2,"leg":4,"cst":164,"culture":"Battania"},
+	{"id":"129","index":39,"name":"Villager Thick Dress","disp":"Villager Thick Dress","typ":"BodyArmor","upg":0,"wei":1.264461,"ttl":11,"bod":7,"arm":3,"leg":1,"cst":167,"culture":"Battania"},
+	{"id":"130","index":40,"name":"Varyag Tunic","disp":"Varyag Tunic","typ":"BodyArmor","upg":0,"wei":1.291926,"ttl":11,"bod":7,"arm":4,"leg":0,"cst":180,"culture":"Sturgia"},
+	{"id":"131","index":41,"name":"Military Tunic","disp":"Military Tunic","typ":"BodyArmor","upg":0,"wei":1.375127,"ttl":12,"bod":8,"arm":2,"leg":2,"cst":189,"culture":"Empire"},
+	{"id":"132","index":42,"name":"Long Tunic","disp":"Long Tunic","typ":"BodyArmor","upg":0,"wei":1.545028,"ttl":13,"bod":7,"arm":2,"leg":4,"cst":200,"culture":"Sturgia"},
+	{"id":"133","index":43,"name":"Aproned Dress","disp":"Aproned Dress","typ":"BodyArmor","upg":0,"wei":1.545028,"ttl":13,"bod":7,"arm":2,"leg":4,"cst":200,"culture":"Vlandia"},
+	{"id":"134","index":44,"name":"Aproned Feminine Coat","disp":"Aproned Feminine Coat","typ":"BodyArmor","upg":0,"wei":1.445364,"ttl":12,"bod":7,"arm":4,"leg":1,"cst":204,"culture":"Khuzait"},
+	{"id":"135","index":45,"name":"Tartan Toga","disp":"Tartan Toga","typ":"BodyArmor","upg":0,"wei":1.516397,"ttl":13,"bod":9,"arm":2,"leg":2,"cst":230,"culture":"Battania"},
+	{"id":"136","index":46,"name":"Long Hemp Tunic","disp":"Long Hemp Tunic","typ":"BodyArmor","upg":0,"wei":1.602659,"ttl":13,"bod":7,"arm":4,"leg":2,"cst":231,"culture":"Vlandia"},
+	{"id":"137","index":47,"name":"Red Dress","disp":"Red Dress","typ":"BodyArmor","upg":0,"wei":1.690007,"ttl":14,"bod":8,"arm":2,"leg":4,"cst":242,"culture":"Empire"},
+	{"id":"138","index":48,"name":"Villager Short Dress","disp":"Villager Short Dress","typ":"BodyArmor","upg":0,"wei":1.631656,"ttl":13,"bod":7,"arm":5,"leg":1,"cst":249,"culture":"Aserai"},
+	{"id":"139","index":49,"name":"Luxury Kaftan with Waistband","disp":"Luxury Kaftan with Waistband","typ":"BodyArmor","upg":0,"wei":1.660773,"ttl":14,"bod":10,"arm":2,"leg":2,"cst":277,"culture":"Aserai"},
+	{"id":"140","index":50,"name":"Light Tunic","disp":"Light Tunic","typ":"BodyArmor","upg":0,"wei":1.748827,"ttl":14,"bod":8,"arm":4,"leg":2,"cst":279,"culture":"Sturgia"},
+	{"id":"141","index":51,"name":"Torn Padded Garments","disp":"Torn Padded Garments","typ":"BodyArmor","upg":0,"wei":1.690007,"ttl":14,"bod":10,"arm":3,"leg":1,"cst":297,"culture":"Looters"},
+	{"id":"142","index":52,"name":"Fur Skirt with Tunic","disp":"Fur Skirt with Tunic","typ":"BodyArmor","upg":0,"wei":1.928015,"ttl":15,"bod":9,"arm":5,"leg":1,"cst":357,"culture":"Looters"},
+	{"id":"143","index":53,"name":"Kaftan with Leather Belt","disp":"Kaftan with Leather Belt","typ":"BodyArmor","upg":0,"wei":2.019096,"ttl":16,"bod":10,"arm":3,"leg":3,"cst":372,"culture":"Aserai"},
+	{"id":"144","index":54,"name":"Cloth Apron","disp":"Cloth Apron","typ":"BodyArmor","upg":0,"wei":2.019096,"ttl":16,"bod":10,"arm":3,"leg":3,"cst":372,"culture":"Neutral"},
+	{"id":"145","index":55,"name":"Frilled Dress","disp":"Frilled Dress","typ":"BodyArmor","upg":0,"wei":2.204109,"ttl":17,"bod":9,"arm":3,"leg":5,"cst":388,"culture":"Sturgia"},
+	{"id":"146","index":56,"name":"Colored Kaftan","disp":"Colored Kaftan","typ":"BodyArmor","upg":0,"wei":2.003849,"ttl":16,"bod":11,"arm":3,"leg":2,"cst":397,"culture":"Aserai"},
+	{"id":"147","index":57,"name":"Silken Noble Dress","disp":"Silken Noble Dress","typ":"BodyArmor","upg":0,"wei":2.173015,"ttl":17,"bod":11,"arm":3,"leg":3,"cst":440,"culture":"Vlandia"},
+	{"id":"148","index":58,"name":"Short Tunic","disp":"Short Tunic","typ":"BodyArmor","upg":0,"wei":2.204109,"ttl":17,"bod":11,"arm":4,"leg":2,"cst":469,"culture":"Empire"},
+	{"id":"149","index":59,"name":"Fur Trimmed Tunic","disp":"Fur Trimmed Tunic","typ":"BodyArmor","upg":0,"wei":2.250941,"ttl":17,"bod":10,"arm":5,"leg":2,"cst":469,"culture":"Sturgia"},
+	{"id":"150","index":60,"name":"Tartan Dress","disp":"Tartan Dress","typ":"BodyArmor","upg":0,"wei":2.297998,"ttl":17,"bod":9,"arm":6,"leg":2,"cst":470,"culture":"Battania"},
+	{"id":"151","index":61,"name":"Tailored Dress","disp":"Tailored Dress","typ":"BodyArmor","upg":0,"wei":2.488437,"ttl":19,"bod":11,"arm":2,"leg":6,"cst":505,"culture":"Aserai"},
+	{"id":"152","index":62,"name":"Cut Dress with Pouch","disp":"Cut Dress with Pouch","typ":"BodyArmor","upg":0,"wei":2.329494,"ttl":18,"bod":12,"arm":3,"leg":3,"cst":517,"culture":"Sturgia"},
+	{"id":"153","index":63,"name":"Roughcloth Shortcoat","disp":"Roughcloth Shortcoat","typ":"BodyArmor","upg":0,"wei":2.376922,"ttl":18,"bod":11,"arm":4,"leg":3,"cst":517,"culture":"Sturgia"},
+	{"id":"154","index":64,"name":"Luxury Coat","disp":"Luxury Coat","typ":"BodyArmor","upg":0,"wei":2.520514,"ttl":19,"bod":11,"arm":3,"leg":5,"cst":536,"culture":"Khuzait"},
+	{"id":"155","index":65,"name":"Villager Leather Tunic","disp":"Villager Leather Tunic","typ":"BodyArmor","upg":0,"wei":2.408663,"ttl":18,"bod":11,"arm":5,"leg":2,"cst":549,"culture":"Battania"},
+	{"id":"156","index":66,"name":"Tunic with Shoulder Pads","disp":"Tunic with Shoulder Pads","typ":"BodyArmor","upg":0,"wei":2.456456,"ttl":18,"bod":10,"arm":6,"leg":2,"cst":550,"culture":"Empire"},
+	{"id":"157","index":67,"name":"Tunic with Rolled Cloth","disp":"Tunic with Rolled Cloth","typ":"BodyArmor","upg":0,"wei":2.698609,"ttl":20,"bod":11,"arm":3,"leg":6,"cst":588,"culture":"Empire"},
+	{"id":"158","index":68,"name":"Rich Dress","disp":"Rich Dress","typ":"BodyArmor","upg":0,"wei":2.488437,"ttl":19,"bod":13,"arm":3,"leg":3,"cst":602,"culture":"Empire"},
+	{"id":"159","index":69,"name":"Luxury Kaftan","disp":"Luxury Kaftan","typ":"BodyArmor","upg":0,"wei":2.617309,"ttl":19,"bod":11,"arm":6,"leg":2,"cst":639,"culture":"Aserai"},
+	{"id":"160","index":70,"name":"Heavy Tunic","disp":"Heavy Tunic","typ":"BodyArmor","upg":0,"wei":2.879459,"ttl":21,"bod":11,"arm":3,"leg":7,"cst":644,"culture":"Sturgia"},
+	{"id":"161","index":71,"name":"Wildling Armor","disp":"Wildling Armor","typ":"BodyArmor","upg":0,"wei":2.714937,"ttl":20,"bod":12,"arm":4,"leg":4,"cst":659,"culture":"Battania"},
+	{"id":"162","index":72,"name":"Scholar Robe","disp":"Scholar Robe","typ":"BodyArmor","upg":0,"wei":2.862907,"ttl":21,"bod":12,"arm":3,"leg":6,"cst":680,"culture":"Vlandia"},
+	{"id":"163","index":73,"name":"Highland Kilt over Tartan Trousers","disp":"Highland Kilt over Tartan Trousers","typ":"BodyArmor","upg":0,"wei":2.91263,"ttl":21,"bod":11,"arm":4,"leg":6,"cst":681,"culture":"Battania"},
+	{"id":"164","index":74,"name":"Envelope Dress","disp":"Envelope Dress","typ":"BodyArmor","upg":0,"wei":2.64976,"ttl":20,"bod":14,"arm":3,"leg":3,"cst":697,"culture":"Khuzait"},
+	{"id":"165","index":75,"name":"Colored Bisht","disp":"Colored Bisht","typ":"BodyArmor","upg":0,"wei":3.04618,"ttl":22,"bod":14,"arm":4,"leg":4,"cst":869,"culture":"Aserai"},
+	{"id":"166","index":76,"name":"Leather Tunic","disp":"Leather Tunic","typ":"BodyArmor","upg":0,"wei":3.113469,"ttl":22,"bod":14,"arm":6,"leg":2,"cst":962,"culture":"Empire"},
+	{"id":"167","index":77,"name":"Tunic with Leather Vest","disp":"Tunic with Leather Vest","typ":"BodyArmor","upg":0,"wei":3.062971,"ttl":22,"bod":15,"arm":5,"leg":2,"cst":963,"culture":"Sturgia"},
+	{"id":"168","index":78,"name":"Tartan Tunic","disp":"Tartan Tunic","typ":"BodyArmor","upg":0,"wei":3.096615,"ttl":22,"bod":15,"arm":6,"leg":1,"cst":1013,"culture":"Battania"},
+	{"id":"169","index":79,"name":"Fur Waistcoat over Tunic","disp":"Fur Waistcoat over Tunic","typ":"BodyArmor","upg":0,"wei":3.334468,"ttl":23,"bod":14,"arm":7,"leg":2,"cst":1089,"culture":"Looters"},
+	{"id":"170","index":80,"name":"Kaftan with Waistband","disp":"Kaftan with Waistband","typ":"BodyArmor","upg":0,"wei":3.283159,"ttl":23,"bod":15,"arm":6,"leg":2,"cst":1090,"culture":"Aserai"},
+	{"id":"171","index":81,"name":"Dress with Fur","disp":"Dress with Fur","typ":"BodyArmor","upg":0,"wei":3.751402,"ttl":26,"bod":15,"arm":3,"leg":8,"cst":1169,"culture":"Khuzait"},
+	{"id":"172","index":82,"name":"Tartan Long Dress","disp":"Tartan Long Dress","typ":"BodyArmor","upg":0,"wei":3.786652,"ttl":26,"bod":15,"arm":4,"leg":7,"cst":1225,"culture":"Battania"},
+	{"id":"173","index":83,"name":"Old Fur Coat","disp":"Old Fur Coat","typ":"BodyArmor","upg":0,"wei":3.558902,"ttl":25,"bod":17,"arm":4,"leg":4,"cst":1257,"culture":"Looters"},
+	{"id":"174","index":84,"name":"Cold Weather Dress","disp":"Cold Weather Dress","typ":"BodyArmor","upg":0,"wei":3.981872,"ttl":27,"bod":15,"arm":4,"leg":8,"cst":1309,"culture":"Sturgia"},
+	{"id":"175","index":85,"name":"Coat with Mirrored Belt","disp":"Coat with Mirrored Belt","typ":"BodyArmor","upg":0,"wei":3.751402,"ttl":25,"bod":14,"arm":8,"leg":3,"cst":1311,"culture":"Khuzait"},
+	{"id":"176","index":86,"name":"Plaid Dress","disp":"Plaid Dress","typ":"BodyArmor","upg":0,"wei":3.69867,"ttl":25,"bod":15,"arm":7,"leg":3,"cst":1313,"culture":"Battania"},
+	{"id":"177","index":87,"name":"Toga","disp":"Toga","typ":"BodyArmor","upg":0,"wei":3.733806,"ttl":25,"bod":15,"arm":8,"leg":2,"cst":1373,"culture":"Empire"},
+	{"id":"178","index":88,"name":"Leather Apron","disp":"Leather Apron","typ":"BodyArmor","upg":0,"wei":3.681132,"ttl":25,"bod":16,"arm":7,"leg":2,"cst":1375,"culture":"Neutral"},
+	{"id":"179","index":89,"name":"Thick Sleeved Robe","disp":"Thick Sleeved Robe","typ":"BodyArmor","upg":0,"wei":4.179327,"ttl":28,"bod":15,"arm":4,"leg":9,"cst":1396,"culture":"Aserai"},
+	{"id":"180","index":90,"name":"Ladies Dress","disp":"Ladies Dress","typ":"BodyArmor","upg":0,"wei":4.215464,"ttl":28,"bod":15,"arm":5,"leg":8,"cst":1458,"culture":"Empire"},
+	{"id":"181","index":91,"name":"Merchant Fur Coat","disp":"Merchant Fur Coat","typ":"BodyArmor","upg":0,"wei":4.161286,"ttl":28,"bod":16,"arm":4,"leg":8,"cst":1460,"culture":"Neutral"},
+	{"id":"182","index":92,"name":"Feminine Kaftan","disp":"Feminine Kaftan","typ":"BodyArmor","upg":0,"wei":3.928406,"ttl":26,"bod":15,"arm":8,"leg":3,"cst":1464,"culture":"Aserai"},
+	{"id":"183","index":93,"name":"Sleeved Heavy Tunic","disp":"Sleeved Heavy Tunic","typ":"BodyArmor","upg":0,"wei":3.928406,"ttl":26,"bod":15,"arm":8,"leg":3,"cst":1464,"culture":"Sturgia"},
+	{"id":"184","index":94,"name":"Decorated Thick Tunic","disp":"Decorated Thick Tunic","typ":"BodyArmor","upg":0,"wei":3.981872,"ttl":27,"bod":17,"arm":5,"leg":5,"cst":1498,"culture":"Sturgia"},
+	{"id":"185","index":95,"name":"Leather Coat over Cloth","disp":"Leather Coat over Cloth","typ":"BodyArmor","upg":0,"wei":4.161286,"ttl":27,"bod":15,"arm":9,"leg":3,"cst":1625,"culture":"Vlandia"},
+	{"id":"186","index":96,"name":"Luxury Thick Coat","disp":"Luxury Thick Coat","typ":"BodyArmor","upg":0,"wei":4.161286,"ttl":28,"bod":18,"arm":5,"leg":5,"cst":1663,"culture":"Khuzait"},
+	{"id":"187","index":97,"name":"Stitched Leather Vest","disp":"Stitched Leather Vest","typ":"BodyArmor","upg":0,"wei":4.233558,"ttl":28,"bod":18,"arm":7,"leg":3,"cst":1806,"culture":"Sturgia"},
+	{"id":"188","index":98,"name":"Townsman Luxury Coat","disp":"Townsman Luxury Coat","typ":"BodyArmor","upg":0,"wei":4.342503,"ttl":29,"bod":19,"arm":5,"leg":5,"cst":1840,"culture":"Battania"},
+	{"id":"189","index":99,"name":"Cheap Paddings","disp":"Cheap Paddings","typ":"BodyArmor","upg":0,"wei":4.971597,"ttl":32,"bod":18,"arm":5,"leg":9,"cst":2081,"culture":"Looters"},
+	{"id":"190","index":100,"name":"Old Fur Armor","disp":"Old Fur Armor","typ":"BodyArmor","upg":0,"wei":4.710186,"ttl":31,"bod":21,"arm":5,"leg":5,"cst":2225,"culture":"Looters"},
+	{"id":"191","index":101,"name":"Sleeveless Padded Short Coat","disp":"Sleeveless Padded Short Coat","typ":"BodyArmor","upg":0,"wei":4.6361,"ttl":30,"bod":20,"arm":8,"leg":2,"cst":2272,"culture":"Vlandia"},
+	{"id":"192","index":102,"name":"Sloven Leather","disp":"Sloven Leather","typ":"BodyArmor","upg":0,"wei":4.971597,"ttl":31,"bod":17,"arm":10,"leg":4,"cst":2288,"culture":"Sturgia"},
+	{"id":"193","index":103,"name":"Boarskin Leather Coat","disp":"Boarskin Leather Coat","typ":"BodyArmor","upg":0,"wei":4.971597,"ttl":32,"bod":20,"arm":6,"leg":6,"cst":2336,"culture":"Empire"},
+	{"id":"194","index":104,"name":"Sleeveless Padded Coat","disp":"Sleeveless Padded Coat","typ":"BodyArmor","upg":0,"wei":5.369708,"ttl":34,"bod":19,"arm":5,"leg":10,"cst":2395,"culture":"Vlandia"},
+	{"id":"195","index":105,"name":"Reinforced Suede Armor","disp":"Reinforced Suede Armor","typ":"BodyArmor","upg":0,"wei":4.784541,"ttl":31,"bod":21,"arm":7,"leg":3,"cst":2396,"culture":"Khuzait"},
+	{"id":"196","index":106,"name":"Sleeveless Fur Coat","disp":"Sleeveless Fur Coat","typ":"BodyArmor","upg":0,"wei":4.896576,"ttl":32,"bod":22,"arm":5,"leg":5,"cst":2434,"culture":"Looters"},
+	{"id":"197","index":107,"name":"Auxiliary Armor with Straps","disp":"Auxiliary Armor with Straps","typ":"BodyArmor","upg":0,"wei":5.028035,"ttl":32,"bod":21,"arm":8,"leg":3,"cst":2608,"culture":"Empire"},
+	{"id":"198","index":108,"name":"Leather Armor","disp":"Leather Armor","typ":"BodyArmor","upg":0,"wei":5.600331,"ttl":35,"bod":20,"arm":6,"leg":9,"cst":2699,"culture":"Empire"},
+	{"id":"199","index":109,"name":"Long Fur Coat","disp":"Long Fur Coat","typ":"BodyArmor","upg":0,"wei":5.755312,"ttl":36,"bod":21,"arm":5,"leg":10,"cst":2833,"culture":"Battania"},
+	{"id":"200","index":110,"name":"Sleeveless Studded Fur Armor","disp":"Sleeveless Studded Fur Armor","typ":"BodyArmor","upg":0,"wei":5.542466,"ttl":35,"bod":23,"arm":6,"leg":6,"cst":3010,"culture":"Battania"},
+	{"id":"201","index":111,"name":"Fur Armor with Strap","disp":"Fur Armor with Strap","typ":"BodyArmor","upg":0,"wei":5.794209,"ttl":35,"bod":20,"arm":11,"leg":4,"cst":3188,"culture":"Battania"},
+	{"id":"202","index":112,"name":"Studded Leather Coat","disp":"Studded Leather Coat","typ":"BodyArmor","upg":0,"wei":5.6777,"ttl":35,"bod":22,"arm":9,"leg":4,"cst":3205,"culture":"Aserai"},
+	{"id":"203","index":113,"name":"Patched Gambeson","disp":"Patched Gambeson","typ":"BodyArmor","upg":0,"wei":5.735886,"ttl":36,"bod":24,"arm":6,"leg":6,"cst":3257,"culture":"Empire"},
+	{"id":"204","index":114,"name":"Padded Leather Shirt","disp":"Padded Leather Shirt","typ":"BodyArmor","upg":0,"wei":5.735886,"ttl":36,"bod":24,"arm":6,"leg":6,"cst":3257,"culture":"Vlandia"},
+	{"id":"205","index":115,"name":"Layered Leather Tunic","disp":"Layered Leather Tunic","typ":"BodyArmor","upg":0,"wei":5.9504,"ttl":36,"bod":21,"arm":10,"leg":5,"cst":3334,"culture":"Sturgia"},
+	{"id":"206","index":116,"name":"Light Long Padded Armor","disp":"Light Long Padded Armor","typ":"BodyArmor","upg":0,"wei":6.048503,"ttl":36,"bod":20,"arm":12,"leg":4,"cst":3431,"culture":"Aserai"},
+	{"id":"207","index":117,"name":"Long Padded Robe","disp":"Long Padded Robe","typ":"BodyArmor","upg":0,"wei":6.424631,"ttl":39,"bod":22,"arm":6,"leg":11,"cst":3442,"culture":"Aserai"},
+	{"id":"208","index":118,"name":"Belted Leather Cuirass","disp":"Belted Leather Cuirass","typ":"BodyArmor","upg":0,"wei":5.930824,"ttl":37,"bod":25,"arm":6,"leg":6,"cst":3514,"culture":"Khuzait"},
+	{"id":"209","index":119,"name":"Reinforced Thick Tunic","disp":"Reinforced Thick Tunic","typ":"BodyArmor","upg":0,"wei":6.206234,"ttl":38,"bod":24,"arm":7,"leg":7,"cst":3647,"culture":"Sturgia"},
+	{"id":"210","index":120,"name":"Auxiliary Armor","disp":"Auxiliary Armor","typ":"BodyArmor","upg":0,"wei":6.245812,"ttl":37,"bod":21,"arm":12,"leg":4,"cst":3695,"culture":"Empire"},
+	{"id":"211","index":121,"name":"Leather Scale Armor","disp":"Leather Scale Armor","typ":"BodyArmor","upg":0,"wei":7.110458,"ttl":42,"bod":23,"arm":7,"leg":12,"cst":4110,"culture":"Vlandia"},
+	{"id":"212","index":122,"name":"Fur Coat over Tunic","disp":"Fur Coat over Tunic","typ":"BodyArmor","upg":0,"wei":6.604605,"ttl":40,"bod":26,"arm":7,"leg":7,"cst":4203,"culture":"Looters"},
+	{"id":"213","index":123,"name":"Rough Fur Armor","disp":"Rough Fur Armor","typ":"BodyArmor","upg":0,"wei":6.907085,"ttl":42,"bod":27,"arm":4,"leg":11,"cst":4280,"culture":"Looters"},
+	{"id":"214","index":124,"name":"Studded Fur Armor","disp":"Studded Fur Armor","typ":"BodyArmor","upg":0,"wei":7.315183,"ttl":43,"bod":24,"arm":7,"leg":12,"cst":4394,"culture":"Looters"},
+	{"id":"215","index":125,"name":"Aketon","disp":"Aketon","typ":"BodyArmor","upg":0,"wei":6.805911,"ttl":41,"bod":27,"arm":7,"leg":7,"cst":4497,"culture":"Vlandia"},
+	{"id":"216","index":126,"name":"Padded Leather Overcoat","disp":"Padded Leather Overcoat","typ":"BodyArmor","upg":0,"wei":6.907085,"ttl":40,"bod":23,"arm":13,"leg":4,"cst":4535,"culture":"Looters"},
+	{"id":"217","index":127,"name":"Short Padded Robe","disp":"Short Padded Robe","typ":"BodyArmor","upg":0,"wei":6.725221,"ttl":40,"bod":26,"arm":10,"leg":4,"cst":4578,"culture":"Aserai"},
+	{"id":"218","index":128,"name":"Light Padded Armor","disp":"Light Padded Armor","typ":"BodyArmor","upg":0,"wei":7.728607,"ttl":45,"bod":26,"arm":7,"leg":12,"cst":4996,"culture":"Sturgia"},
+	{"id":"219","index":129,"name":"Padded Footman Coat","disp":"Padded Footman Coat","typ":"BodyArmor","upg":0,"wei":7.33573,"ttl":42,"bod":24,"arm":13,"leg":5,"cst":5005,"culture":"Vlandia"},
+	{"id":"220","index":130,"name":"Rugged Gambeson","disp":"Rugged Gambeson","typ":"BodyArmor","upg":0,"wei":7.212653,"ttl":43,"bod":29,"arm":7,"leg":7,"cst":5117,"culture":"Looters"},
+	{"id":"221","index":131,"name":"Highland Long Tartan","disp":"Highland Long Tartan","typ":"BodyArmor","upg":0,"wei":7.958202,"ttl":46,"bod":26,"arm":7,"leg":13,"cst":5159,"culture":"Battania"},
+	{"id":"222","index":132,"name":"Short Gambeson over Tunic","disp":"Short Gambeson over Tunic","typ":"BodyArmor","upg":0,"wei":7.192187,"ttl":42,"bod":27,"arm":11,"leg":4,"cst":5191,"culture":"Sturgia"},
+	{"id":"223","index":133,"name":"Fortified Mercenary Armor","disp":"Fortified Mercenary Armor","typ":"BodyArmor","upg":0,"wei":7.707812,"ttl":45,"bod":29,"arm":8,"leg":8,"cst":5598,"culture":"Vlandia"},
+	{"id":"224","index":134,"name":"Studded Leather Armor","disp":"Studded Leather Armor","typ":"BodyArmor","upg":0,"wei":8.464448,"ttl":48,"bod":26,"arm":8,"leg":14,"cst":5631,"culture":"Khuzait"},
+	{"id":"225","index":135,"name":"Cured Leather Lamellar Shirt","disp":"Cured Leather Lamellar Shirt","typ":"BodyArmor","upg":0,"wei":7.811915,"ttl":44,"bod":25,"arm":14,"leg":5,"cst":5638,"culture":"Sturgia"},
+	{"id":"226","index":136,"name":"Leather Strips over Padded Robe","disp":"Leather Strips over Padded Robe","typ":"BodyArmor","upg":0,"wei":7.811915,"ttl":44,"bod":25,"arm":14,"leg":5,"cst":5638,"culture":"Aserai"},
+	{"id":"227","index":137,"name":"Infantryman Long Gambeson","disp":"Infantryman Long Gambeson","typ":"BodyArmor","upg":0,"wei":8.443211,"ttl":48,"bod":27,"arm":8,"leg":13,"cst":5791,"culture":"Empire"},
+	{"id":"228","index":138,"name":"Padded Cloth with Strips","disp":"Padded Cloth with Strips","typ":"BodyArmor","upg":0,"wei":7.66626,"ttl":44,"bod":28,"arm":12,"leg":4,"cst":5841,"culture":"Empire"},
+	{"id":"229","index":139,"name":"Leather Armor over Heavy Cloth","disp":"Leather Armor over Heavy Cloth","typ":"BodyArmor","upg":0,"wei":7.916342,"ttl":46,"bod":30,"arm":8,"leg":8,"cst":5938,"culture":"Sturgia"},
+	{"id":"230","index":140,"name":"Heavy Aketon","disp":"Heavy Aketon","typ":"BodyArmor","upg":0,"wei":8.677489,"ttl":49,"bod":27,"arm":8,"leg":14,"cst":5964,"culture":"Vlandia"},
+	{"id":"231","index":141,"name":"Woven Leather Vest","disp":"Woven Leather Vest","typ":"BodyArmor","upg":0,"wei":7.832776,"ttl":45,"bod":29,"arm":11,"leg":5,"cst":6039,"culture":"Vlandia"},
+	{"id":"232","index":142,"name":"Woodland Cloth Armor","disp":"Woodland Cloth Armor","typ":"BodyArmor","upg":0,"wei":7.832776,"ttl":46,"bod":32,"arm":7,"leg":7,"cst":6129,"culture":"Battania"},
+	{"id":"233","index":143,"name":"Cured Studded Leather Armor","disp":"Cured Studded Leather Armor","typ":"BodyArmor","upg":0,"wei":8.252636,"ttl":46,"bod":26,"arm":14,"leg":6,"cst":6156,"culture":"Empire"},
+	{"id":"234","index":144,"name":"Highland Tartan","disp":"Highland Tartan","typ":"BodyArmor","upg":0,"wei":8.2949,"ttl":46,"bod":26,"arm":15,"leg":5,"cst":6308,"culture":"Battania"},
+	{"id":"235","index":145,"name":"Ring Mail","disp":"Ring Mail","typ":"BodyArmor","upg":0,"wei":8.126148,"ttl":47,"bod":31,"arm":8,"leg":8,"cst":6289,"culture":"Aserai"},
+	{"id":"236","index":146,"name":"Infantryman Rough Gambeson","disp":"Infantryman Rough Gambeson","typ":"BodyArmor","upg":0,"wei":8.337213,"ttl":48,"bod":32,"arm":8,"leg":8,"cst":6649,"culture":"Empire"},
+	{"id":"237","index":147,"name":"Infantryman Gambeson with Straps","disp":"Infantryman Gambeson with Straps","typ":"BodyArmor","upg":0,"wei":8.31605,"ttl":47,"bod":30,"arm":12,"leg":5,"cst":6736,"culture":"Empire"},
+	{"id":"238","index":148,"name":"Crude Hide Armor","disp":"Crude Hide Armor","typ":"BodyArmor","upg":0,"wei":8.741637,"ttl":48,"bod":27,"arm":15,"leg":6,"cst":6853,"culture":"Khuzait"},
+	{"id":"239","index":149,"name":"Huscarl Mail Shirt","disp":"Huscarl Mail Shirt","typ":"BodyArmor","upg":0,"wei":8.741637,"ttl":49,"bod":32,"arm":12,"leg":5,"cst":7496,"culture":"Sturgia"},
+	{"id":"240","index":150,"name":"Mirrored Leather Armor","disp":"Mirrored Leather Armor","typ":"BodyArmor","upg":0,"wei":9.848494,"ttl":54,"bod":30,"arm":9,"leg":15,"cst":7563,"culture":"Khuzait"},
+	{"id":"241","index":151,"name":"Huscarl Hauberk","disp":"Huscarl Hauberk","typ":"BodyArmor","upg":0,"wei":9.848494,"ttl":54,"bod":30,"arm":9,"leg":15,"cst":7563,"culture":"Sturgia"},
+	{"id":"242","index":152,"name":"Infantryman Gambeson over Leather Jacket","disp":"Infantryman Gambeson over Leather Jacket","typ":"BodyArmor","upg":0,"wei":9.237036,"ttl":50,"bod":28,"arm":16,"leg":6,"cst":7585,"culture":"Empire"},
+	{"id":"243","index":153,"name":"Infantryman Gambeson","disp":"Infantryman Gambeson","typ":"BodyArmor","upg":0,"wei":9.28041,"ttl":52,"bod":34,"arm":9,"leg":9,"cst":7964,"culture":"Empire"},
+	{"id":"244","index":154,"name":"Buckled Mail Armor","disp":"Buckled Mail Armor","typ":"BodyArmor","upg":0,"wei":9.454373,"ttl":51,"bod":29,"arm":16,"leg":6,"cst":7977,"culture":"Looters"},
+	{"id":"245","index":155,"name":"Infantryman Mail over Striped Leather","disp":"Infantryman Mail over Striped Leather","typ":"BodyArmor","upg":0,"wei":9.237036,"ttl":51,"bod":33,"arm":13,"leg":5,"cst":8268,"culture":"Empire"},
+	{"id":"246","index":156,"name":"Rough Fur over Mail","disp":"Rough Fur over Mail","typ":"BodyArmor","upg":0,"wei":9.497981,"ttl":53,"bod":35,"arm":9,"leg":9,"cst":8368,"culture":"Looters"},
+	{"id":"247","index":157,"name":"Heavy Ring Mail","disp":"Heavy Ring Mail","typ":"BodyArmor","upg":0,"wei":9.980687,"ttl":53,"bod":29,"arm":17,"leg":7,"cst":8551,"culture":"Aserai"},
+	{"id":"248","index":158,"name":"Huscarl Decorated Mail Shirt","disp":"Huscarl Decorated Mail Shirt","typ":"BodyArmor","upg":0,"wei":9.914539,"ttl":53,"bod":30,"arm":16,"leg":7,"cst":8580,"culture":"Sturgia"},
+	{"id":"249","index":159,"name":"Aserai Chain Mail","disp":"Aserai Chain Mail","typ":"BodyArmor","upg":0,"wei":9.454373,"ttl":52,"bod":34,"arm":13,"leg":5,"cst":8682,"culture":"Aserai"},
+	{"id":"250","index":160,"name":"Banded Leather over Mail","disp":"Banded Leather over Mail","typ":"BodyArmor","upg":0,"wei":10.78226,"ttl":58,"bod":32,"arm":9,"leg":17,"cst":8739,"culture":"Vlandia"},
+	{"id":"251","index":161,"name":"Leather Tabard over Mail","disp":"Leather Tabard over Mail","typ":"BodyArmor","upg":0,"wei":9.716708,"ttl":54,"bod":36,"arm":9,"leg":9,"cst":8782,"culture":"Sturgia"},
+	{"id":"252","index":162,"name":"Fur Armor","disp":"Fur Armor","typ":"BodyArmor","upg":0,"wei":9.892513,"ttl":53,"bod":31,"arm":16,"leg":6,"cst":8793,"culture":"Battania"},
+	{"id":"253","index":163,"name":"Stitched Cured Leather Vest","disp":"Stitched Cured Leather Vest","typ":"BodyArmor","upg":0,"wei":9.62908,"ttl":54,"bod":38,"arm":8,"leg":8,"cst":9032,"culture":"Empire"},
+	{"id":"254","index":164,"name":"Heavy Mail Shirt","disp":"Heavy Mail Shirt","typ":"BodyArmor","upg":0,"wei":9.672871,"ttl":53,"bod":35,"arm":13,"leg":5,"cst":9106,"culture":"Vlandia"},
+	{"id":"255","index":165,"name":"Stitched Cured Leather Coat","disp":"Stitched Cured Leather Coat","typ":"BodyArmor","upg":0,"wei":10.24629,"ttl":56,"bod":36,"arm":10,"leg":10,"cst":9380,"culture":"Khuzait"},
+	{"id":"256","index":166,"name":"Mail Shirt","disp":"Mail Shirt","typ":"BodyArmor","upg":0,"wei":10.42424,"ttl":55,"bod":31,"arm":17,"leg":7,"cst":9389,"culture":"Vlandia"},
+	{"id":"257","index":167,"name":"Robe over Mail Hauberk","disp":"Robe over Mail Hauberk","typ":"BodyArmor","upg":0,"wei":11.30174,"ttl":60,"bod":33,"arm":10,"leg":17,"cst":9539,"culture":"Aserai"},
+	{"id":"258","index":168,"name":"Heavy Mail Vest","disp":"Heavy Mail Vest","typ":"BodyArmor","upg":0,"wei":10.42424,"ttl":56,"bod":36,"arm":14,"leg":6,"cst":10162,"culture":"Battania"},
+	{"id":"259","index":169,"name":"Robe over Mail Shirt","disp":"Robe over Mail Shirt","typ":"BodyArmor","upg":0,"wei":10.6925,"ttl":58,"bod":38,"arm":10,"leg":10,"cst":10261,"culture":"Aserai"},
+	{"id":"260","index":170,"name":"Cavalryman Mail Shirt","disp":"Cavalryman Mail Shirt","typ":"BodyArmor","upg":0,"wei":12.01071,"ttl":63,"bod":35,"arm":10,"leg":18,"cst":10616,"culture":"Empire"},
+	{"id":"261","index":171,"name":"Southern Reinforced Short Mail Armor","disp":"Southern Reinforced Short Mail Armor","typ":"BodyArmor","upg":0,"wei":10.64768,"ttl":57,"bod":37,"arm":14,"leg":6,"cst":10617,"culture":"Aserai"},
+	{"id":"262","index":172,"name":"Studded Leather over Aketon","disp":"Studded Leather over Aketon","typ":"BodyArmor","upg":0,"wei":11.41542,"ttl":59,"bod":33,"arm":18,"leg":8,"cst":10897,"culture":"Khuzait"},
+	{"id":"263","index":173,"name":"Heavy Mail Hauberk","disp":"Heavy Mail Hauberk","typ":"BodyArmor","upg":0,"wei":11.14304,"ttl":60,"bod":40,"arm":10,"leg":10,"cst":11180,"culture":"Vlandia"},
+	{"id":"264","index":174,"name":"Stitched Leather over Mail","disp":"Stitched Leather over Mail","typ":"BodyArmor","upg":0,"wei":12.49655,"ttl":65,"bod":36,"arm":10,"leg":19,"cst":11281,"culture":"Aserai"},
+	{"id":"265","index":175,"name":"Bronze Scale Vest","disp":"Bronze Scale Vest","typ":"BodyArmor","upg":0,"wei":11.16568,"ttl":59,"bod":38,"arm":15,"leg":6,"cst":11514,"culture":"Sturgia"},
+	{"id":"266","index":176,"name":"Infantryman Mail over Leather","disp":"Infantryman Mail over Leather","typ":"BodyArmor","upg":0,"wei":11.6893,"ttl":60,"bod":34,"arm":19,"leg":7,"cst":11571,"culture":"Empire"},
+	{"id":"267","index":177,"name":"Infantryman Mail Vest","disp":"Infantryman Mail Vest","typ":"BodyArmor","upg":0,"wei":11.6893,"ttl":62,"bod":40,"arm":11,"leg":11,"cst":11834,"culture":"Empire"},
+	{"id":"268","index":178,"name":"Southern Reinforced Mail Vest","disp":"Southern Reinforced Mail Vest","typ":"BodyArmor","upg":0,"wei":11.39266,"ttl":60,"bod":39,"arm":15,"leg":6,"cst":11996,"culture":"Aserai"},
+	{"id":"269","index":179,"name":"Cured Leather Lamellar Armor","disp":"Cured Leather Lamellar Armor","typ":"BodyArmor","upg":0,"wei":13.52868,"ttl":69,"bod":38,"arm":11,"leg":20,"cst":12873,"culture":"Khuzait"},
+	{"id":"270","index":180,"name":"Southern Decorated Chain Mail","disp":"Southern Decorated Chain Mail","typ":"BodyArmor","upg":0,"wei":12.70613,"ttl":64,"bod":36,"arm":20,"leg":8,"cst":13213,"culture":"Aserai"},
+	{"id":"271","index":181,"name":"Mail With Tabbard","disp":"Mail With Tabbard","typ":"BodyArmor","upg":0,"wei":12.61288,"ttl":66,"bod":44,"arm":11,"leg":11,"cst":13825,"culture":"Vlandia"},
+	{"id":"272","index":182,"name":"Highland Reinforced Mail over Tartan","disp":"Highland Reinforced Mail over Tartan","typ":"BodyArmor","upg":0,"wei":14.26702,"ttl":72,"bod":40,"arm":11,"leg":21,"cst":14088,"culture":"Battania"},
+	{"id":"273","index":183,"name":"Highland Reinforced Mail","disp":"Highland Reinforced Mail","typ":"BodyArmor","upg":0,"wei":12.63618,"ttl":65,"bod":42,"arm":16,"leg":7,"cst":14200,"culture":"Battania"},
+	{"id":"274","index":184,"name":"Decorated Legionary Mail","disp":"Decorated Legionary Mail","typ":"BodyArmor","upg":0,"wei":13.48136,"ttl":67,"bod":38,"arm":21,"leg":8,"cst":14705,"culture":"Empire"},
+	{"id":"275","index":185,"name":"Southern Reinforced Sleeveless Mail Armor","disp":"Southern Reinforced Sleeveless Mail Armor","typ":"BodyArmor","upg":0,"wei":13.08067,"ttl":68,"bod":46,"arm":11,"leg":11,"cst":14874,"culture":"Aserai"},
+	{"id":"276","index":186,"name":"Bronze Scale Vest over Gambeson","disp":"Bronze Scale Vest over Gambeson","typ":"BodyArmor","upg":0,"wei":14.8206,"ttl":74,"bod":41,"arm":12,"leg":21,"cst":15064,"culture":"Sturgia"},
+	{"id":"277","index":187,"name":"Steppe Reinforced Leather Armor","disp":"Steppe Reinforced Leather Armor","typ":"BodyArmor","upg":0,"wei":14.33895,"ttl":71,"bod":40,"arm":18,"leg":13,"cst":15510,"culture":"Khuzait"},
+	{"id":"278","index":188,"name":"Legionary Mail","disp":"Legionary Mail","typ":"BodyArmor","upg":0,"wei":13.64715,"ttl":70,"bod":46,"arm":12,"leg":12,"cst":15596,"culture":"Empire"},
+	{"id":"279","index":189,"name":"Ranger Mail","disp":"Ranger Mail","typ":"BodyArmor","upg":0,"wei":14.26702,"ttl":70,"bod":40,"arm":22,"leg":8,"cst":16263,"culture":"Battania"},
+	{"id":"280","index":190,"name":"Bronze Lamellar Vest over Gambeson","disp":"Bronze Lamellar Vest over Gambeson","typ":"BodyArmor","upg":0,"wei":15.57433,"ttl":77,"bod":43,"arm":12,"leg":22,"cst":16356,"culture":"Aserai"},
+	{"id":"281","index":191,"name":"Leather Armor with Iron Plates","disp":"Leather Armor with Iron Plates","typ":"BodyArmor","upg":0,"wei":13.95629,"ttl":70,"bod":45,"arm":18,"leg":7,"cst":16809,"culture":"Sturgia"},
+	{"id":"282","index":192,"name":"Kilt over Plated Leather","disp":"Kilt over Plated Leather","typ":"BodyArmor","upg":0,"wei":14.69984,"ttl":74,"bod":48,"arm":13,"leg":13,"cst":17446,"culture":"Battania"},
+	{"id":"283","index":193,"name":"Decorated Hauberk","disp":"Decorated Hauberk","typ":"BodyArmor","upg":0,"wei":15.08706,"ttl":73,"bod":41,"arm":23,"leg":9,"cst":17563,"culture":"Sturgia"},
+	{"id":"284","index":194,"name":"Red Tabard over Mail Hauberk","disp":"Red Tabard over Mail Hauberk","typ":"BodyArmor","upg":0,"wei":16.65871,"ttl":81,"bod":45,"arm":13,"leg":23,"cst":18190,"culture":"Vlandia"},
+	{"id":"285","index":195,"name":"White Tabard over Mail Hauberk","disp":"White Tabard over Mail Hauberk","typ":"BodyArmor","upg":0,"wei":16.65871,"ttl":81,"bod":45,"arm":13,"leg":23,"cst":18190,"culture":"Vlandia"},
+	{"id":"286","index":196,"name":"Heavy Lamellar over Mail","disp":"Heavy Lamellar over Mail","typ":"BodyArmor","upg":0,"wei":14.74812,"ttl":73,"bod":47,"arm":19,"leg":7,"cst":18472,"culture":"Sturgia"},
+	{"id":"287","index":197,"name":"Heavy Lamellar Vest","disp":"Heavy Lamellar Vest","typ":"BodyArmor","upg":0,"wei":15.18423,"ttl":76,"bod":50,"arm":13,"leg":13,"cst":18598,"culture":"Sturgia"},
+	{"id":"288","index":198,"name":"Coat Of Plates","disp":"Coat Of Plates","typ":"BodyArmor","upg":0,"wei":15.18423,"ttl":76,"bod":50,"arm":13,"leg":13,"cst":18598,"culture":"Sturgia"},
+	{"id":"289","index":199,"name":"Brigandine Vest","disp":"Brigandine Vest","typ":"BodyArmor","upg":0,"wei":15.54988,"ttl":76,"bod":49,"arm":20,"leg":7,"cst":20197,"culture":"Khuzait"},
+	{"id":"290","index":200,"name":"black/red/blue Brigandine with armpads","disp":"black/red/blue Brigandine with armpads","typ":"BodyArmor","upg":0,"wei":16.4603,"ttl":78,"bod":44,"arm":25,"leg":9,"cst":20355,"culture":"Vlandia"},
+	{"id":"291","index":201,"name":"Rough Brigandine","disp":"Rough Brigandine","typ":"BodyArmor","upg":0,"wei":15.91753,"ttl":79,"bod":53,"arm":13,"leg":13,"cst":20387,"culture":"Vlandia"},
+	{"id":"292","index":202,"name":"Highland Scale Armor over Mail Armor","disp":"Highland Scale Armor over Mail Armor","typ":"BodyArmor","upg":0,"wei":18.29074,"ttl":87,"bod":48,"arm":14,"leg":25,"cst":20935,"culture":"Battania"},
+	{"id":"293","index":203,"name":"Luxury Lamellar Vest over Leather","disp":"Luxury Lamellar Vest over Leather","typ":"BodyArmor","upg":0,"wei":16.04052,"ttl":78,"bod":51,"arm":20,"leg":7,"cst":21431,"culture":"Empire"},
+	{"id":"294","index":204,"name":"black/red/blue Brigandine","disp":"black/red/blue Brigandine","typ":"BodyArmor","upg":0,"wei":16.55944,"ttl":80,"bod":52,"arm":20,"leg":8,"cst":22318,"culture":"Vlandia"},
+	{"id":"295","index":205,"name":"Heavy Lamellar over Mail Armor","disp":"Heavy Lamellar over Mail Armor","typ":"BodyArmor","upg":0,"wei":19.4151,"ttl":91,"bod":50,"arm":15,"leg":26,"cst":22934,"culture":"Sturgia"},
+	{"id":"296","index":206,"name":"Heavy Mail Shirt with Wide Belt","disp":"Heavy Mail Shirt with Wide Belt","typ":"BodyArmor","upg":0,"wei":17.81006,"ttl":83,"bod":47,"arm":26,"leg":10,"cst":23007,"culture":"Battania"},
+	{"id":"297","index":207,"name":"Heavy Lamellar over Hauberk","disp":"Heavy Lamellar over Hauberk","typ":"BodyArmor","upg":0,"wei":17.2572,"ttl":84,"bod":56,"arm":14,"leg":14,"cst":23064,"culture":"Sturgia"},
+	{"id":"298","index":208,"name":"Highland Scale Armor over Cloth","disp":"Highland Scale Armor over Cloth","typ":"BodyArmor","upg":0,"wei":17.40758,"ttl":83,"bod":53,"arm":21,"leg":9,"cst":23781,"culture":"Battania"},
+	{"id":"299","index":209,"name":"Rugged Scale Armor","disp":"Rugged Scale Armor","typ":"BodyArmor","upg":0,"wei":17.86052,"ttl":86,"bod":56,"arm":15,"leg":15,"cst":23886,"culture":"Battania"},
+	{"id":"300","index":210,"name":"Light Lamellar Armor","disp":"Light Lamellar Armor","typ":"BodyArmor","upg":0,"wei":17.91101,"ttl":85,"bod":55,"arm":21,"leg":9,"cst":25092,"culture":"Aserai"},
+	{"id":"301","index":211,"name":"Cavalry Lamellar Armor","disp":"Cavalry Lamellar Armor","typ":"BodyArmor","upg":0,"wei":20.21643,"ttl":94,"bod":52,"arm":15,"leg":27,"cst":24439,"culture":"Aserai"},
+	{"id":"302","index":212,"name":"Southern Reinforced Mail Armor","disp":"Southern Reinforced Mail Armor","typ":"BodyArmor","upg":0,"wei":18.36691,"ttl":88,"bod":58,"arm":15,"leg":15,"cst":25192,"culture":"Aserai"},
+	{"id":"303","index":213,"name":"Gambeson over Mail Armor","disp":"Gambeson over Mail Armor","typ":"BodyArmor","upg":0,"wei":19.51807,"ttl":89,"bod":50,"arm":28,"leg":11,"cst":26352,"culture":"Aserai"},
+	{"id":"304","index":214,"name":"Shiny Vaegir Coat of Plates","disp":"Shiny Vaegir Coat of Plates","typ":"BodyArmor","upg":0,"wei":20.34638,"ttl":93,"bod":52,"arm":23,"leg":18,"cst":26628,"culture":"Sturgia"},
+	{"id":"305","index":215,"name":"Vaegir Coat of Plates","disp":"Vaegir Coat of Plates","typ":"BodyArmor","upg":0,"wei":20.34638,"ttl":93,"bod":52,"arm":23,"leg":18,"cst":26628,"culture":"Sturgia"},
+	{"id":"306","index":216,"name":"Mirrored Brigandine Armor","disp":"Mirrored Brigandine Armor","typ":"BodyArmor","upg":0,"wei":20.97277,"ttl":94,"bod":53,"arm":30,"leg":11,"cst":29580,"culture":"Khuzait"},
+	{"id":"307","index":217,"name":"Ornate Legionary Scale Mail","disp":"Ornate Legionary Scale Mail","typ":"BodyArmor","upg":0,"wei":19.85361,"ttl":92,"bod":60,"arm":23,"leg":9,"cst":29713,"culture":"Empire"},
+	{"id":"308","index":218,"name":"Highborn Mail Armor","disp":"Highborn Mail Armor","typ":"BodyArmor","upg":0,"wei":23.35992,"ttl":105,"bod":58,"arm":17,"leg":30,"cst":30336,"culture":"Battania"},
+	{"id":"309","index":219,"name":"Lamellar with Scale Skirt","disp":"Lamellar with Scale Skirt","typ":"BodyArmor","upg":0,"wei":20.78962,"ttl":97,"bod":65,"arm":16,"leg":16,"cst":30871,"culture":"Empire"},
+	{"id":"310","index":220,"name":"Luxury Brigandine","disp":"Luxury Brigandine","typ":"BodyArmor","upg":0,"wei":21.15629,"ttl":98,"bod":64,"arm":17,"leg":17,"cst":31042,"culture":"Battania"},
+	{"id":"311","index":221,"name":"Bronze Lamellar over Mail","disp":"Bronze Lamellar over Mail","typ":"BodyArmor","upg":0,"wei":21.05138,"ttl":98,"bod":66,"arm":16,"leg":16,"cst":31590,"culture":"Khuzait"},
+	{"id":"312","index":222,"name":"Mastercrafted Southern Scale over Chain Hauberk","disp":"Mastercrafted Southern Scale over Chain Hauberk","typ":"BodyArmor","upg":0,"wei":21.4191,"ttl":99,"bod":65,"arm":17,"leg":17,"cst":31760,"culture":"Aserai"},
+	{"id":"313","index":223,"name":"Heavy Scale Armor over Mail Hauberk","disp":"Heavy Scale Armor over Mail Hauberk","typ":"BodyArmor","upg":0,"wei":22.18545,"ttl":98,"bod":55,"arm":32,"leg":11,"cst":32217,"culture":"Empire"},
+	{"id":"314","index":224,"name":"Lancer Lamellar Armor","disp":"Lancer Lamellar Armor","typ":"BodyArmor","upg":0,"wei":24.49387,"ttl":109,"bod":60,"arm":17,"leg":32,"cst":32259,"culture":"Khuzait"},
+	{"id":"315","index":225,"name":"Rough Scale Mail","disp":"Rough Scale Mail","typ":"BodyArmor","upg":0,"wei":21.05138,"ttl":96,"bod":62,"arm":25,"leg":9,"cst":32393,"culture":"Battania"},
+	{"id":"316","index":226,"name":"Mastercrafted Southern Scale Mail","disp":"Mastercrafted Southern Scale Mail","typ":"BodyArmor","upg":0,"wei":22.39795,"ttl":99,"bod":56,"arm":31,"leg":12,"cst":32590,"culture":"Aserai"},
+	{"id":"317","index":227,"name":"Cataphract Lamellar Armor","disp":"Cataphract Lamellar Armor","typ":"BodyArmor","upg":0,"wei":24.46672,"ttl":109,"bod":61,"arm":17,"leg":31,"cst":32693,"culture":"Empire"},
+	{"id":"318","index":228,"name":"Mastercrafted Southern Scale over Chain Mail","disp":"Mastercrafted Southern Scale over Chain Mail","typ":"BodyArmor","upg":0,"wei":24.52102,"ttl":109,"bod":61,"arm":18,"leg":30,"cst":33034,"culture":"Aserai"},
+	{"id":"319","index":229,"name":"Brigandine over Hauberk","disp":"Brigandine over Hauberk","typ":"BodyArmor","upg":0,"wei":21.94696,"ttl":101,"bod":67,"arm":17,"leg":17,"cst":33214,"culture":"Sturgia"},
+	{"id":"320","index":230,"name":"Scale Warlord Armor","disp":"Scale Warlord Armor","typ":"BodyArmor","upg":0,"wei":23.01147,"ttl":101,"bod":57,"arm":32,"leg":12,"cst":33942,"culture":"Battania"},
+	{"id":"321","index":231,"name":"Plate Cuirass","disp":"Plate Cuirass","typ":"BodyArmor","upg":0,"wei":22.21199,"ttl":102,"bod":68,"arm":17,"leg":17,"cst":33951,"culture":"Vlandia"},
+	{"id":"322","index":232,"name":"Luxury Scale Armor","disp":"Luxury Scale Armor","typ":"BodyArmor","upg":0,"wei":21.86759,"ttl":99,"bod":64,"arm":25,"leg":10,"cst":34143,"culture":"Aserai"},
+	{"id":"323","index":233,"name":"Brigandine over Mail","disp":"Brigandine over Mail","typ":"BodyArmor","upg":0,"wei":25.39343,"ttl":112,"bod":62,"arm":18,"leg":32,"cst":34290,"culture":"Vlandia"}
+	],
+  gaun:[
+    {id:3, index:0, name:"<none>", disp:"<none>", typ:"HandArmor", upg:0, wei:0.0, ttl:0.0, bod:0.0, arm:0.0, leg:0.0, cst:0.0, culture:"Neutral" },
+	{"id":"324","index":1,"name":"Armwraps","disp":"Armwraps","typ":"HandArmor","upg":0,"wei":0.2933283,"ttl":3,"bod":0,"arm":3,"leg":0,"cst":52,"culture":"Battania"},
+	{"id":"325","index":2,"name":"Wrapped Armguards","disp":"Wrapped Armguards","typ":"HandArmor","upg":0,"wei":0.2933283,"ttl":3,"bod":0,"arm":3,"leg":0,"cst":52,"culture":"Khuzait"},
+	{"id":"326","index":3,"name":"Ragged Armwraps","disp":"Ragged Armwraps","typ":"HandArmor","upg":0,"wei":0.2933283,"ttl":3,"bod":0,"arm":3,"leg":0,"cst":52,"culture":"Battania"},
+	{"id":"327","index":4,"name":"Roughtied Leather Bracers","disp":"Roughtied Leather Bracers","typ":"HandArmor","upg":0,"wei":0.2933283,"ttl":3,"bod":0,"arm":3,"leg":0,"cst":52,"culture":"Battania"},
+	{"id":"328","index":5,"name":"Leather Gloves","disp":"Leather Gloves","typ":"HandArmor","upg":0,"wei":0.4263579,"ttl":4,"bod":0,"arm":4,"leg":0,"cst":55,"culture":"Neutral"},
+	{"id":"329","index":6,"name":"Buttoned Leather Bracers","disp":"Buttoned Leather Bracers","typ":"HandArmor","upg":0,"wei":0.4263579,"ttl":4,"bod":0,"arm":4,"leg":0,"cst":55,"culture":"Battania"},
+	{"id":"330","index":7,"name":"Strapped Leather Bracers","disp":"Strapped Leather Bracers","typ":"HandArmor","upg":0,"wei":0.5698458,"ttl":5,"bod":0,"arm":5,"leg":0,"cst":61,"culture":"Battania"},
+	{"id":"331","index":8,"name":"Studded Vambraces","disp":"Studded Vambraces","typ":"HandArmor","upg":0,"wei":0.5698458,"ttl":5,"bod":0,"arm":5,"leg":0,"cst":61,"culture":"Khuzait"},
+	{"id":"332","index":9,"name":"Woven Leather Bracers","disp":"Woven Leather Bracers","typ":"HandArmor","upg":0,"wei":0.7222589,"ttl":6,"bod":0,"arm":6,"leg":0,"cst":69,"culture":"Empire"},
+	{"id":"333","index":10,"name":"Guarded Armwraps","disp":"Guarded Armwraps","typ":"HandArmor","upg":0,"wei":0.8825183,"ttl":7,"bod":0,"arm":7,"leg":0,"cst":82,"culture":"Battania"},
+	{"id":"334","index":11,"name":"Padded Vambraces","disp":"Padded Vambraces","typ":"HandArmor","upg":0,"wei":0.8825183,"ttl":7,"bod":0,"arm":7,"leg":0,"cst":82,"culture":"Neutral"},
+	{"id":"335","index":12,"name":"Fur Rimmed Leather Gloves","disp":"Fur Rimmed Leather Gloves","typ":"HandArmor","upg":0,"wei":1.049816,"ttl":8,"bod":0,"arm":8,"leg":0,"cst":99,"culture":"Battania"},
+	{"id":"336","index":13,"name":"Padded Mittens","disp":"Padded Mittens","typ":"HandArmor","upg":0,"wei":1.223521,"ttl":9,"bod":0,"arm":9,"leg":0,"cst":120,"culture":"Empire"},
+	{"id":"337","index":14,"name":"Rough Tied Bracers","disp":"Rough Tied Bracers","typ":"HandArmor","upg":0,"wei":1.223521,"ttl":9,"bod":0,"arm":9,"leg":0,"cst":120,"culture":"Battania"},
+	{"id":"338","index":15,"name":"Guarded Padded Vambraces","disp":"Guarded Padded Vambraces","typ":"HandArmor","upg":0,"wei":1.223521,"ttl":9,"bod":0,"arm":9,"leg":0,"cst":120,"culture":"Aserai"},
+	{"id":"339","index":16,"name":"Studded Leather Vambraces","disp":"Studded Leather Vambraces","typ":"HandArmor","upg":0,"wei":1.588206,"ttl":11,"bod":0,"arm":11,"leg":0,"cst":182,"culture":"Khuzait"},
+	{"id":"340","index":17,"name":"Leather Vambraces","disp":"Leather Vambraces","typ":"HandArmor","upg":0,"wei":1.77841,"ttl":12,"bod":0,"arm":12,"leg":0,"cst":222,"culture":"Khuzait"},
+	{"id":"341","index":18,"name":"Plated Padded Mittens","disp":"Plated Padded Mittens","typ":"HandArmor","upg":0,"wei":3.012663,"ttl":18,"bod":0,"arm":18,"leg":0,"cst":632,"culture":"Empire"},
+	{"id":"342","index":19,"name":"Decorated Padded Mittens","disp":"Decorated Padded Mittens","typ":"HandArmor","upg":0,"wei":3.012663,"ttl":18,"bod":0,"arm":18,"leg":0,"cst":632,"culture":"Empire"},
+	{"id":"343","index":20,"name":"Fian Bracers","disp":"Fian Bracers","typ":"HandArmor","upg":0,"wei":3.012663,"ttl":18,"bod":0,"arm":18,"leg":0,"cst":632,"culture":"Battania"},
+	{"id":"344","index":21,"name":"Plate Reinforced Gloves","disp":"Plate Reinforced Gloves","typ":"HandArmor","upg":0,"wei":3.012663,"ttl":18,"bod":0,"arm":18,"leg":0,"cst":632,"culture":"Sturgia"},
+	{"id":"345","index":22,"name":"Mail Mittens","disp":"Mail Mittens","typ":"HandArmor","upg":0,"wei":3.454898,"ttl":20,"bod":0,"arm":20,"leg":0,"cst":841,"culture":"Vlandia"},
+	{"id":"346","index":23,"name":"Splint Vambraces","disp":"Splint Vambraces","typ":"HandArmor","upg":0,"wei":3.454898,"ttl":20,"bod":0,"arm":20,"leg":0,"cst":841,"culture":"Vlandia"},
+	{"id":"347","index":24,"name":"Decorated Imperial Gauntlets","disp":"Decorated Imperial Gauntlets","typ":"HandArmor","upg":0,"wei":3.454898,"ttl":20,"bod":0,"arm":20,"leg":0,"cst":841,"culture":"Empire"},
+	{"id":"348","index":25,"name":"Bronze Bracers","disp":"Bronze Bracers","typ":"HandArmor","upg":0,"wei":3.910621,"ttl":22,"bod":0,"arm":22,"leg":0,"cst":1089,"culture":"Sturgia"},
+	{"id":"349","index":26,"name":"Plated Striped Vambraces","disp":"Plated Striped Vambraces","typ":"HandArmor","upg":0,"wei":3.910621,"ttl":22,"bod":0,"arm":22,"leg":0,"cst":1089,"culture":"Empire"},
+	{"id":"350","index":27,"name":"Lamellar Plate Gauntlets","disp":"Lamellar Plate Gauntlets","typ":"HandArmor","upg":0,"wei":4.143263,"ttl":23,"bod":0,"arm":23,"leg":0,"cst":1228,"culture":"Empire"},
+	{"id":"351","index":28,"name":"Plated Leather Vambraces","disp":"Plated Leather Vambraces","typ":"HandArmor","upg":0,"wei":4.378959,"ttl":24,"bod":0,"arm":24,"leg":0,"cst":1376,"culture":"Khuzait"},
+	{"id":"352","index":29,"name":"Metal Striped Mail Mittens","disp":"Metal Striped Mail Mittens","typ":"HandArmor","upg":0,"wei":4.378959,"ttl":24,"bod":0,"arm":24,"leg":0,"cst":1376,"culture":"Vlandia"},
+	{"id":"353","index":30,"name":"Heavy Mail Mittens","disp":"Heavy Mail Mittens","typ":"HandArmor","upg":0,"wei":4.378959,"ttl":24,"bod":0,"arm":24,"leg":0,"cst":1376,"culture":"Vlandia"},
+	{"id":"354","index":31,"name":"Scale Warlord Bracers","disp":"Scale Warlord Bracers","typ":"HandArmor","upg":0,"wei":4.617621,"ttl":25,"bod":0,"arm":25,"leg":0,"cst":1536,"culture":"Battania"},
+	{"id":"355","index":32,"name":"Plate Mittens","disp":"Plate Mittens","typ":"HandArmor","upg":0,"wei":5.852668,"ttl":30,"bod":0,"arm":30,"leg":0,"cst":2484,"culture":"Vlandia"}
+	],
+  legs:[
+    {id:4, index:0, name:"<none>", disp:"<none>", typ:"LegArmor", upg:0, wei:0.0, ttl:0.0, bod:0.0, arm:0.0, leg:0.0, cst:0.0, culture:"Neutral" },
+	{"id":"356","index":1,"name":"Ladies Shoes","disp":"Ladies Shoes","typ":"LegArmor","upg":0,"wei":0.05659532,"ttl":1,"bod":0,"arm":0,"leg":1,"cst":50,"culture":"Neutral"},
+	{"id":"357","index":2,"name":"Moccasins","disp":"Moccasins","typ":"LegArmor","upg":0,"wei":0.139354,"ttl":2,"bod":0,"arm":0,"leg":2,"cst":50,"culture":"Aserai"},
+	{"id":"358","index":3,"name":"Leather Shoes","disp":"Leather Shoes","typ":"LegArmor","upg":0,"wei":0.2360685,"ttl":3,"bod":0,"arm":0,"leg":3,"cst":51,"culture":"Neutral"},
+	{"id":"359","index":4,"name":"Wrapped Boots","disp":"Wrapped Boots","typ":"LegArmor","upg":0,"wei":0.2360685,"ttl":3,"bod":0,"arm":0,"leg":3,"cst":51,"culture":"Sturgia"},
+	{"id":"360","index":5,"name":"Folded Town Boots","disp":"Folded Town Boots","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Empire"},
+	{"id":"361","index":6,"name":"Fine Town Boots","disp":"Fine Town Boots","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Empire"},
+	{"id":"362","index":7,"name":"Wrapped Shoes","disp":"Wrapped Shoes","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Aserai"},
+	{"id":"363","index":8,"name":"Tied Boots","disp":"Tied Boots","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Sturgia"},
+	{"id":"364","index":9,"name":"Sturdy Leather Boots","disp":"Sturdy Leather Boots","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Khuzait"},
+	{"id":"365","index":10,"name":"Fur Rimmed Curved Boots","disp":"Fur Rimmed Curved Boots","typ":"LegArmor","upg":0,"wei":0.3431298,"ttl":4,"bod":0,"arm":0,"leg":4,"cst":54,"culture":"Khuzait"},
+	{"id":"366","index":11,"name":"Curved Boots","disp":"Curved Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Khuzait"},
+	{"id":"367","index":12,"name":"Woven Leather Boots","disp":"Woven Leather Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Khuzait"},
+	{"id":"368","index":13,"name":"Forester Boots","disp":"Forester Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Battania"},
+	{"id":"369","index":14,"name":"Simple Leather Boots","disp":"Simple Leather Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Sturgia"},
+	{"id":"370","index":15,"name":"Horseman Boots","disp":"Horseman Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Empire"},
+	{"id":"371","index":16,"name":"Strapped Leather Boots","disp":"Strapped Leather Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Empire"},
+	{"id":"372","index":17,"name":"Belted Leather Boots","disp":"Belted Leather Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Battania"},
+	{"id":"373","index":18,"name":"Highborn Leather Boots","disp":"Highborn Leather Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Battania"},
+	{"id":"374","index":19,"name":"Ragged Boots","disp":"Ragged Boots","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Neutral"},
+	{"id":"375","index":20,"name":"Strapped Shoes","disp":"Strapped Shoes","typ":"LegArmor","upg":0,"wei":0.4586078,"ttl":5,"bod":0,"arm":0,"leg":5,"cst":58,"culture":"Neutral"},
+	{"id":"376","index":21,"name":"Rough Tied Boots","disp":"Rough Tied Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Battania"},
+	{"id":"377","index":22,"name":"Leather Riding Boots","disp":"Leather Riding Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Khuzait"},
+	{"id":"378","index":23,"name":"Tied Leather Boots","disp":"Tied Leather Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Sturgia"},
+	{"id":"379","index":24,"name":"Leather Cavalier Boots","disp":"Leather Cavalier Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Vlandia"},
+	{"id":"380","index":25,"name":"Fur Boots","disp":"Fur Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Battania"},
+	{"id":"381","index":26,"name":"Woodland Boots","disp":"Woodland Boots","typ":"LegArmor","upg":0,"wei":0.5812689,"ttl":6,"bod":0,"arm":0,"leg":6,"cst":65,"culture":"Battania"},
+	{"id":"382","index":27,"name":"Wrapped Leather Boots","disp":"Wrapped Leather Boots","typ":"LegArmor","upg":0,"wei":0.7102446,"ttl":7,"bod":0,"arm":0,"leg":7,"cst":75,"culture":"Battania"},
+	{"id":"383","index":28,"name":"Woodland Leg Wrappings","disp":"Woodland Leg Wrappings","typ":"LegArmor","upg":0,"wei":0.8448846,"ttl":8,"bod":0,"arm":0,"leg":8,"cst":88,"culture":"Battania"},
+	{"id":"384","index":29,"name":"Folded Leather Boots","disp":"Folded Leather Boots","typ":"LegArmor","upg":0,"wei":0.9846814,"ttl":9,"bod":0,"arm":0,"leg":9,"cst":106,"culture":"Battania"},
+	{"id":"385","index":30,"name":"Mail Cavalier Boots","disp":"Mail Cavalier Boots","typ":"LegArmor","upg":0,"wei":1.431252,"ttl":12,"bod":0,"arm":0,"leg":12,"cst":190,"culture":"Vlandia"},
+	{"id":"386","index":31,"name":"Huscarl Plated Boots","disp":"Huscarl Plated Boots","typ":"LegArmor","upg":0,"wei":2.42457,"ttl":18,"bod":0,"arm":0,"leg":18,"cst":540,"culture":"Sturgia"},
+	{"id":"387","index":32,"name":"Lamellar Plate Boots","disp":"Lamellar Plate Boots","typ":"LegArmor","upg":0,"wei":2.601118,"ttl":19,"bod":0,"arm":0,"leg":19,"cst":627,"culture":"Empire"},
+	{"id":"388","index":33,"name":"Reinforced Suede Boots","disp":"Reinforced Suede Boots","typ":"LegArmor","upg":0,"wei":2.780478,"ttl":20,"bod":0,"arm":0,"leg":20,"cst":723,"culture":"Khuzait"},
+	{"id":"389","index":34,"name":"Decorated Plate Boots","disp":"Decorated Plate Boots","typ":"LegArmor","upg":0,"wei":2.780478,"ttl":20,"bod":0,"arm":0,"leg":20,"cst":723,"culture":"Empire"},
+	{"id":"390","index":35,"name":"Splint Boots","disp":"Splint Boots","typ":"LegArmor","upg":0,"wei":3.147241,"ttl":22,"bod":0,"arm":0,"leg":22,"cst":943,"culture":"Empire"},
+	{"id":"391","index":36,"name":"Mail Chausses","disp":"Mail Chausses","typ":"LegArmor","upg":0,"wei":3.147241,"ttl":22,"bod":0,"arm":0,"leg":22,"cst":943,"culture":"Vlandia"},
+	{"id":"392","index":37,"name":"Strapped Mail Chausses","disp":"Strapped Mail Chausses","typ":"LegArmor","upg":0,"wei":3.334469,"ttl":23,"bod":0,"arm":0,"leg":23,"cst":1068,"culture":"Vlandia"},
+	{"id":"393","index":38,"name":"Scaled Boots","disp":"Scaled Boots","typ":"LegArmor","upg":0,"wei":3.910622,"ttl":26,"bod":0,"arm":0,"leg":26,"cst":1502,"culture":"Battania"},
+	{"id":"394","index":39,"name":"Plate Boots","disp":"Plate Boots","typ":"LegArmor","upg":0,"wei":4.710186,"ttl":30,"bod":0,"arm":0,"leg":30,"cst":2225,"culture":"Vlandia"}
+	],
+}
+
     function addoption(select, value, name) {
       var option = new Option(name, value, true, true);
       select.options[select.length] = option;
@@ -154,48 +561,11 @@
     }
 
     function init() {
-      fetch('/items.json')
-        .then(res => res.json())
-        .then(resData => {
-          const { data: armorData } = resData;
-          let armory = armorData.filter(item => 
-            item.type == 'ShoulderArmor' ||
-            item.type == 'BodyArmor' ||
-            item.type == 'HandArmor' ||
-            item.type == 'LegArmor')
-            .map(({ 
-              id, 
-              name, 
-              type, 
-              price, 
-              weight,
-              culture,
-              armor: {
-                bodyArmor,
-                legArmor,
-                armArmor
-              }
-            }) => ({
-              id,
-              name,
-              culture,
-              disp: name,
-              typ: type,
-              upg: 0,
-              wei: weight,
-              bod: bodyArmor,
-              arm: armArmor,
-              leg: legArmor,
-              cst: price,
-              ttl: bodyArmor + armArmor + legArmor
-            }));
-
-          initarmor(document.input.shou, armory.filter(item => item.typ == 'ShoulderArmor'));
-          initarmor(document.input.ches, armory.filter(item => item.typ == 'BodyArmor'));
-          initarmor(document.input.gaun, armory.filter(item => item.typ == 'HandArmor'));
-          initarmor(document.input.legs, armory.filter(item => item.typ == 'LegArmor'));
-          load();
-        });
+      initarmor(document.input.shou, armory.shou);
+      initarmor(document.input.ches, armory.ches);
+      initarmor(document.input.gaun, armory.gaun);
+      initarmor(document.input.legs, armory.legs);
+      load();
     }
 
     function makecombo(a, b, c, d) {
@@ -336,7 +706,7 @@
       var maxv = null; //makecombo(findmax(armory.shou),findmax(armory.ches),findmax(armory.gaun),findmax(armory.legs));
 
       var maxweight = parseInt(document.input.maxweight.value);
-      var maxcost = parseInt(document.input.maxcost.value);
+	  var maxcost = parseInt(document.input.maxcost.value);
       var maxupgrade = 10;
       var objfn = getobjfn(maxv);
       var minfn = getminfn();
@@ -353,7 +723,7 @@
         var a1 = shou[si];
         if (a1.upg > maxupgrade) continue;
         if (a1.wei > maxweight) continue;
-        if (a1.cst > maxcost) continue;
+		if (a1.cst > maxcost) continue;
         var a1value = objfn(a1);
         if (a1value + besta234value < worst) continue;
         if (!minfn(addcombos(a1, max234))) continue;
@@ -362,7 +732,7 @@
           var a2 = ches[ci];
           if (a2.upg > maxupgrade) continue;
           if (a1.wei + a2.wei > maxweight) continue;
-          if (a1.cst + a2.cst > maxcost) continue;
+		  if (a1.cst + a2.cst > maxcost) continue;
           var a12value = a1value + objfn(a2);
           if (a12value + besta34value < worst) continue;
           if (!minfn(addcombos(a1, a2, max34))) continue;
@@ -371,7 +741,7 @@
             var a3 = gaun[gi];
             if (a3.upg > maxupgrade) continue;
             if (a1.wei + a2.wei + a3.wei > maxweight) continue;
-            if (a1.cst + a2.cst + a3.cst > maxcost) continue;
+			if (a1.cst + a2.cst + a3.cst > maxcost) continue;
             var a123value = a12value + objfn(a3);
             if (a123value + besta4value < worst) continue;
             if (!minfn(addcombos(a1, a2, a3, max4))) continue;
@@ -381,7 +751,7 @@
               if (a4.upg > maxupgrade) continue;
               var weight = a1.wei + a2.wei + a3.wei + a4.wei;
               if (weight > maxweight) continue;
-              if (a1.cst + a2.cst + a3.cst + a4.cst > maxcost) continue;
+			  if (a1.cst + a2.cst + a3.cst + a4.cst > maxcost) continue;
               var value = a123value + objfn(a4);
               if (value < worst) continue;
 
@@ -463,7 +833,7 @@
       arr.pop();
     }
 
-    function disableArmor(type, index) {
+	function disableArmor(type, index) {
       var sel;
       if (type == 'ShoulderArmor') sel = document.input.shou;
       else if (type == 'BodyArmor') sel = document.input.ches;
@@ -610,7 +980,7 @@
 
 
   </script>
-  </head>
+</head>
 
 
 
@@ -619,22 +989,19 @@
     <form name="input" action="javascript:optimize()" style="margin: 0 auto; text-align: center;">
       <table style="margin: 0 auto;">
         <tr>
-          <td style="text-align: center;">allowed shoulder armor<br /><select id="shou" name="shou" size=20 multiple />
-          </td>
-          <td style="text-align: center;">allowed chest armor<br /><select id="ches" name="ches" size=20 multiple />
-          </td>
+          <td style="text-align: center;">allowed shoulder armor<br /><select id="shou" name="shou" size=20 multiple /></td>
+          <td style="text-align: center;">allowed chest armor<br /><select id="ches" name="ches" size=20 multiple /></td>
           <td style="text-align: center;">allowed hand armor<br /><select id="gaun" name="gaun" size=20 multiple /></td>
           <td style="text-align: center;">allowed leg armor<br /><select id="legs" name="legs" size=20 multiple /></td>
           <td style="text-align: center;">
             <table>
-              <div style="text-align: center; margin-top: 1em;">
-                <a href="https://ko-fi.com/willowveil" target="_blank">
-                  <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" width="200" height="51" border="0"
-                    alt="Buy Me a Coffee" />
-                </a>
-              </div>
+			  <div style="text-align: center; margin-top: 1em;">
+<a href="https://ko-fi.com/willowveil" target="_blank">
+  <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" width="200" height="51" border="0" alt="Buy Me a Coffee" />
+</a>
+  </div>
               <tr>
-                <td />
+				<td />
                 <td>minimum</td>
               </tr>
               <tr>
@@ -662,7 +1029,7 @@
                 <td><input class="minim" name="mcst" type="text" maxlength="6" size="3" value="0" />
                 </td>
               </tr>
-              <tr>
+			  <tr>
                 <td colspan="2" class="restriction">max cost</td>
                 <td><input class="restriction" name="maxcost" type="text" maxlength="6" size="3" value="60000" /></td>
               </tr>
