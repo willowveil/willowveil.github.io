@@ -141,6 +141,13 @@
 
 
   <script type="text/javascript">
+    let armory = {
+      shou: [],
+      ches: [],
+      gaun: [],
+      legs: []
+    };
+
     function addoption(select, value, name) {
       var option = new Option(name, value, true, true);
       select.options[select.length] = option;
@@ -149,25 +156,26 @@
     function initarmor(select, source) {
       for (var i = 0; i < source.length; ++i) {
         var a = source[i];
-        addoption(select, a.index, a.disp);
+        addoption(select, i, a.disp);
       }
     }
 
     function init() {
-      fetch('/items.json')
+      let currentId = 0;
+      fetch('/crpgarmoroptimizer/items.json')
         .then(res => res.json())
         .then(resData => {
           const { data: armorData } = resData;
-          let armory = armorData.filter(item => 
+          const mappedData = armorData.filter(item =>
             item.type == 'ShoulderArmor' ||
             item.type == 'BodyArmor' ||
             item.type == 'HandArmor' ||
             item.type == 'LegArmor')
-            .map(({ 
-              id, 
-              name, 
-              type, 
-              price, 
+            .map(({
+              id,
+              name,
+              type,
+              price,
               weight,
               culture,
               armor: {
@@ -176,7 +184,7 @@
                 armArmor
               }
             }) => ({
-              id,
+              id: (currentId++).toString(),
               name,
               culture,
               disp: name,
@@ -190,10 +198,22 @@
               ttl: bodyArmor + armArmor + legArmor
             }));
 
-          initarmor(document.input.shou, armory.filter(item => item.typ == 'ShoulderArmor'));
-          initarmor(document.input.ches, armory.filter(item => item.typ == 'BodyArmor'));
-          initarmor(document.input.gaun, armory.filter(item => item.typ == 'HandArmor'));
-          initarmor(document.input.legs, armory.filter(item => item.typ == 'LegArmor'));
+          const shoulders = mappedData.filter(item => item.typ == 'ShoulderArmor');
+          const bodies = mappedData.filter(item => item.typ == 'BodyArmor');
+          const hands = mappedData.filter(item => item.typ == 'HandArmor');
+          const legs = mappedData.filter(item => item.typ == 'LegArmor');
+
+          armory = {
+            shou: shoulders,
+            ches: bodies,
+            gaun: hands,
+            legs: legs
+          };
+
+          initarmor(document.input.shou, armory.shou);
+          initarmor(document.input.ches, armory.ches);
+          initarmor(document.input.gaun, armory.gaun);
+          initarmor(document.input.legs, armory.legs);
           load();
         });
     }
