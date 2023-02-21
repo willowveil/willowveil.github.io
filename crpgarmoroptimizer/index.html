@@ -166,44 +166,54 @@
         .then(resData => {
           const { data: armorData } = resData;
           const mappedData = armorData.filter(item =>
-			item.type == 'ShoulderArmor' ||
-			item.type == 'BodyArmor' ||
-			item.type == 'HandArmor' ||
-			item.type == 'LegArmor')
-			.map(({
-				id,
-				name,
-				type,
-				price,
-				weight,
-				culture,
-				armor: {
-					bodyArmor,
-					legArmor,
-					armArmor
-				}
-			}, index) => ({
-				id: (currentId++).toString(),
-				name,
-				culture,
-				disp: name,
-				typ: type,
-				upg: 0,
-				wei: weight,
-				bod: bodyArmor,
-				arm: armArmor,
-				leg: legArmor,
-				cst: price,
-				ttl: bodyArmor + armArmor + legArmor,
-				index: index.toString() // add index property
-			}));
+            item.type == 'ShoulderArmor' ||
+            item.type == 'BodyArmor' ||
+            item.type == 'HandArmor' ||
+            item.type == 'LegArmor')
+            .map(({
+              id,
+              name,
+              type,
+              price,
+              weight,
+              culture,
+              armor: {
+                bodyArmor,
+                legArmor,
+                armArmor
+              }
+            }) => ({
+              id: (currentId++).toString(),
+              name,
+              culture,
+              disp: name,
+              typ: type,
+              upg: 0,
+              wei: weight,
+              bod: bodyArmor,
+              arm: armArmor,
+              leg: legArmor,
+              cst: price,
+              ttl: bodyArmor + armArmor + legArmor
+            }));
 
-		initarmor(document.input.shou, armory.shou);
-		initarmor(document.input.ches, armory.ches);
-		initarmor(document.input.gaun, armory.gaun);
-		initarmor(document.input.legs, armory.legs);
-		load();
+          const shoulders = mappedData.filter(item => item.typ == 'ShoulderArmor');
+          const bodies = mappedData.filter(item => item.typ == 'BodyArmor');
+          const hands = mappedData.filter(item => item.typ == 'HandArmor');
+          const legs = mappedData.filter(item => item.typ == 'LegArmor');
 
+          armory = {
+            shou: shoulders,
+            ches: bodies,
+            gaun: hands,
+            legs: legs
+          };
+
+          initarmor(document.input.shou, armory.shou);
+          initarmor(document.input.ches, armory.ches);
+          initarmor(document.input.gaun, armory.gaun);
+          initarmor(document.input.legs, armory.legs);
+          load();
         });
     }
 
@@ -473,24 +483,21 @@
     }
 
     function disableArmor(type, index) {
-		var sel;
-		if (type == 'ShoulderArmor') sel = document.input.shou;
-		else if (type == 'BodyArmor') sel = document.input.ches;
-		else if (type == 'HandArmor') sel = document.input.gaun;
-		else if (type == 'LegArmor') sel = document.input.legs;
+      var sel;
+      if (type == 'ShoulderArmor') sel = document.input.shou;
+      else if (type == 'BodyArmor') sel = document.input.ches;
+      else if (type == 'HandArmor') sel = document.input.gaun;
+      else if (type == 'LegArmor') sel = document.input.legs;
 
-		const foundItem = armory[type.toLowerCase()][index];
-		const itemId = foundItem.id;
-  
-		for (var i = 0; i < sel.length; ++i) {
-			if (sel.options[i].value == itemId) {
+		for (var i = 0; i < sel.options.length; ++i) {
+			if (sel.options[i].value == index) {
 			sel.options[i].selected = false;
 			break;
 		}
 	}
-  optimize();
-}
 
+      optimize();
+    }
 
     function makepin(index, stick) {
       if (stick) {
