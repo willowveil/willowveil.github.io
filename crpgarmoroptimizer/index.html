@@ -489,13 +489,13 @@
       else if (type == 'HandArmor') sel = document.input.gaun;
       else if (type == 'LegArmor') sel = document.input.legs;
 
-      for (var i = 0; sel.length; ++i) {
-        if (sel.options[i].value == index) {
-          sel.options[i].selected = false;
+		for (var i = 0; i < sel.options.length; ++i) {
+			if (sel.options[i].value == index) {
+			sel.options[i].selected = false;
+			break;
+		}
+	}
 
-          break;
-        }
-      }
       optimize();
     }
 
