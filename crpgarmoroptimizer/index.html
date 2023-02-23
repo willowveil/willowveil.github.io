@@ -147,17 +147,20 @@
       legs: []
     };
 
-    function addoption(select, value, name) {
-      var option = new Option(name, value, true, true);
-      select.options[select.length] = option;
-    }
+    function addoption(select, value, name, id) {
+		var option = new Option(name, value, true, true);
+		option.setAttribute("data-id", id);
+		select.options[select.length] = option;
+	}
+
 
     function initarmor(select, source) {
-      for (var i = 0; i < source.length; ++i) {
-        var a = source[i];
-        addoption(select, i, a.disp);
-      }
-    }
+		for (var i = 0; i < source.length; ++i) {
+			var a = source[i];
+			addoption(select, i, a.disp, a.id);
+		}
+	}
+
 
     function init() {
       let currentId = 0;
@@ -483,21 +486,22 @@
     }
 
     function disableArmor(type, id) {
-      var sel;
-      if (type == 'ShoulderArmor') sel = document.input.shou;
-      else if (type == 'BodyArmor') sel = document.input.ches;
-      else if (type == 'HandArmor') sel = document.input.gaun;
-      else if (type == 'LegArmor') sel = document.input.legs;
+		var sel;
+		if (type == 'ShoulderArmor') sel = document.input.shou;
+		else if (type == 'BodyArmor') sel = document.input.ches;
+		else if (type == 'HandArmor') sel = document.input.gaun;
+		else if (type == 'LegArmor') sel = document.input.legs;
 
 		for (var i = 0; i < sel.options.length; ++i) {
-			if (sel.options[i].value == id) {
-			sel.options[i].selected = false;
-			break;
+			if (sel.options[i].getAttribute("data-id") == id) {
+				sel.options[i].selected = false;
+				break;
+			}
 		}
+
+		optimize();
 	}
 
-      optimize();
-    }
 
     function makepin(index, stick) {
       if (stick) {
@@ -597,7 +601,7 @@
             td.appendChild(_a("javascript:makepin(" + index + ",false)", "[*]", "unpin result"));
           }
         } else if (i >= 5) {
-          td.setAttribute("align", "right");
+          td.setAttribute("alegn", "right");
           td.appendChild(_txt(r[i]));
         }
         else {
