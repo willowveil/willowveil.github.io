@@ -482,22 +482,25 @@
       arr.pop();
     }
 
-    function disableArmor(type, id) {
-		var sel;
-		if (type == 'ShoulderArmor') sel = document.input.shou;
-		else if (type == 'BodyArmor') sel = document.input.ches;
-		else if (type == 'HandArmor') sel = document.input.gaun;
-		else if (type == 'LegArmor') sel = document.input.legs;
+    function disableArmor(select, otherSelects) {
+  var selectedIds = getselected(select);
+  var usedIds = otherSelects
+    .map(function (s) { return getselected(s); })
+    .reduce(function (acc, val) { return acc.concat(val); }, [])
+    .filter(function (id) { return id !== ""; });
 
-		for (var i = 0; i < sel.options.length; ++i) {
-			if (sel.options[i].getAttribute('value') == id) {
-			sel.options[i].selected = false;
-			break;
-		}
-	}
-
-  optimize();
+  for (var i = 0; i < select.options.length; ++i) {
+    var id = select.options[i].value;
+    if (id !== "") {
+      if (usedIds.indexOf(id) !== -1 && selectedIds.indexOf(id) === -1) {
+        select.options[i].disabled = true;
+      } else {
+        select.options[i].disabled = false;
+      }
+    }
+  }
 }
+
 
 
     function makepin(index, stick) {
