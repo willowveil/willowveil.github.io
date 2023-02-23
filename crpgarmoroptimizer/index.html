@@ -149,6 +149,7 @@
 
     function addoption(select, value, name, id) {
 		var option = new Option(name, value, true, true);
+		option.id = id;
 		option.setAttribute("data-id", id);
 		select.options[select.length] = option;
 	}
@@ -493,7 +494,7 @@
 		else if (type == 'LegArmor') sel = document.input.legs;
 
 		for (var i = 0; i < sel.options.length; ++i) {
-			if (sel.options[i].getAttribute("data-id") == id) {
+			if (sel.options[i].id == id) {
 				sel.options[i].selected = false;
 				break;
 			}
