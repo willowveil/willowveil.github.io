@@ -482,36 +482,30 @@
       arr.pop();
     }
 
-function disableArmor() {
-  var a = makecombo(
-    armory.shou[document.input.shou.selectedIndex],
-    armory.ches[document.input.ches.selectedIndex],
-    armory.gaun[document.input.gaun.selectedIndex],
-    armory.legs[document.input.legs.selectedIndex]
-  );
-
-  for (var key in armory) {
-    var selectedIndex = document.input[key].selectedIndex;
-    if (selectedIndex > -1) {
-      var b = selectfromarr(armory[key], [selectedIndex]);
-      for (var i = 0; i < armory[key].length; ++i) {
-        document.input[key].selectedIndex = i;
-        var c = makecombo(
-          armory.shou[document.input.shou.selectedIndex],
-          armory.ches[document.input.ches.selectedIndex],
-          armory.gaun[document.input.gaun.selectedIndex],
-          armory.legs[document.input.legs.selectedIndex]
-        );
-        if (getobjfn(null)(c) > getobjfn(null)(a)) {
-          document.input[key][i].disabled = true;
-        } else {
-          document.input[key][i].disabled = false;
-        }
-      }
-      document.input[key].selectedIndex = selectedIndex;
-    }
+function disableArmor(type) {
+  var sel;
+  var index;
+  if (type == 'ShoulderArmor') {
+    sel = document.input.shou;
+    index = sel.selectedIndex;
+  } else if (type == 'BodyArmor') {
+    sel = document.input.ches;
+    index = sel.selectedIndex;
+  } else if (type == 'HandArmor') {
+    sel = document.input.gaun;
+    index = sel.selectedIndex;
+  } else if (type == 'LegArmor') {
+    sel = document.input.legs;
+    index = sel.selectedIndex;
   }
+
+  if (index >= 0) {
+    sel.options[index].selected = false;
+  }
+  
+  optimize();
 }
+
 
 
     function makepin(index, stick) {
