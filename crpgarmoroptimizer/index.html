@@ -482,22 +482,23 @@
       arr.pop();
     }
 
-    function disableArmor(type, index) {
-      var sel;
-      if (type == 'ShoulderArmor') sel = document.input.shou;
-      else if (type == 'BodyArmor') sel = document.input.ches;
-      else if (type == 'HandArmor') sel = document.input.gaun;
-      else if (type == 'LegArmor') sel = document.input.legs;
+    function disableArmor(type, id) {
+		var sel;
+		if (type == 'ShoulderArmor') sel = document.input.shou;
+		else if (type == 'BodyArmor') sel = document.input.ches;
+		else if (type == 'HandArmor') sel = document.input.gaun;
+		else if (type == 'LegArmor') sel = document.input.legs;
 
 		for (var i = 0; i < sel.options.length; ++i) {
-			if (sel.options[i].value == index) {
-			sel.options[i].selected = false;
-			break;
+			if (sel.options[i].value == id.toString()) {
+				sel.options[i].selected = false;
+				break;
+			}
 		}
+
+		optimize();
 	}
 
-      optimize();
-    }
 
     function makepin(index, stick) {
       if (stick) {
@@ -608,7 +609,7 @@
           } else {
             td.appendChild(_txt(ar.disp + "  ["));
           }
-          td.appendChild(_a("javascript:disableArmor('" + ar.typ + "', " + ar.index + ")", "x", "disable " + ar.disp));
+          td.appendChild(_a("javascript:disableArmor('" + ar.typ + "', " + ar.id + ")", "x", "disable " + ar.disp));
           td.appendChild(_txt("]"));
           if (pin == 'y') {
             td.setAttribute("class", "s" + classes[i]);
