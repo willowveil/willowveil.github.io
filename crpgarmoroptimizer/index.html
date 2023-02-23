@@ -482,47 +482,22 @@
       arr.pop();
     }
 
-    function disablearmor(a) {
-  var selects = [document.input.shou, document.input.ches, document.input.gaun, document.input.legs];
-  var disabled = [];
-  for (var i = 0; i < selects.length; ++i) {
-    var s = selects[i];
-    var indices = [];
-    for (var j = 0; j < s.length; ++j) {
-      var v = s.options[j].value;
-      var armor = armory[s.name][v];
-      if (armor.id === a.id) {
-        disabled.push(v);
-      } else if (!disabled.includes(v)) {
-        indices.push(j);
-      }
-    }
-    for (var j = 0; j < s.length; ++j) {
-      s.options[j].disabled = disabled.includes(s.options[j].value);
-    }
-    var sel = getselected(s);
-    var arr = selectfromarr(armory[s.name], sel);
-    var combos = [];
-    for (var j = 0; j < arr.length; ++j) {
-      for (var k = j + 1; k < arr.length; ++k) {
-        for (var l = k + 1; l < arr.length; ++l) {
-          for (var m = l + 1; m < arr.length; ++m) {
-            combos.push(makecombo(arr[j], arr[k], arr[l], arr[m]));
-          }
-        }
-      }
-    }
-    combos = combos.filter(getminfn());
-    combos.sort((a, b) => getobjfn().call(null, b) - getobjfn().call(null, a));
-    var maxcombo = combos[0];
-    if (maxcombo) {
-      document.input[s.name + 'combo'].textContent = maxcombo.disp + ' (' + getobjfn(maxcombo).call(null, maxcombo).toFixed(2) + ')';
-    } else {
-      document.input[s.name + 'combo'].textContent = '---';
-    }
-  }
-}
+    function disableArmor(type, index) {
+      var sel;
+      if (type == 'ShoulderArmor') sel = document.input.shou;
+      else if (type == 'BodyArmor') sel = document.input.ches;
+      else if (type == 'HandArmor') sel = document.input.gaun;
+      else if (type == 'LegArmor') sel = document.input.legs;
 
+		for (var i = 0; i < sel.options.length; ++i) {
+			if (sel.options[i].value == index) {
+			sel.options[i].selected = false;
+			break;
+		}
+	}
+
+      optimize();
+    }
 
     function makepin(index, stick) {
       if (stick) {
