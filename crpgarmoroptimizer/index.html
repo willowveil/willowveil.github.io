@@ -482,22 +482,37 @@
       arr.pop();
     }
 
-    function disableArmor(type, index) {
-      var sel;
-      if (type == 'ShoulderArmor') sel = document.input.shou;
-      else if (type == 'BodyArmor') sel = document.input.ches;
-      else if (type == 'HandArmor') sel = document.input.gaun;
-      else if (type == 'LegArmor') sel = document.input.legs;
+function disableArmor() {
+  var a = makecombo(
+    armory.shou[document.input.shou.selectedIndex],
+    armory.ches[document.input.ches.selectedIndex],
+    armory.gaun[document.input.gaun.selectedIndex],
+    armory.legs[document.input.legs.selectedIndex]
+  );
 
-		for (var i = 0; i < sel.options.length; ++i) {
-			if (sel.options[i].value == index) {
-			sel.options[i].selected = false;
-			break;
-		}
-	}
-
-      optimize();
+  for (var key in armory) {
+    var selectedIndex = document.input[key].selectedIndex;
+    if (selectedIndex > -1) {
+      var b = selectfromarr(armory[key], [selectedIndex]);
+      for (var i = 0; i < armory[key].length; ++i) {
+        document.input[key].selectedIndex = i;
+        var c = makecombo(
+          armory.shou[document.input.shou.selectedIndex],
+          armory.ches[document.input.ches.selectedIndex],
+          armory.gaun[document.input.gaun.selectedIndex],
+          armory.legs[document.input.legs.selectedIndex]
+        );
+        if (getobjfn(null)(c) > getobjfn(null)(a)) {
+          document.input[key][i].disabled = true;
+        } else {
+          document.input[key][i].disabled = false;
+        }
+      }
+      document.input[key].selectedIndex = selectedIndex;
     }
+  }
+}
+
 
     function makepin(index, stick) {
       if (stick) {
